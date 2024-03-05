@@ -3,12 +3,20 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "postinstall": "bin/installs.js",
+    "prepareLive": "bin/prepareLive.js",
+    "packLive": "bin/packLive.js",
+    "dev": "bin/packLive.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.41.2",
     "@types/node": "^20.11.17"
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2"
   }
 }

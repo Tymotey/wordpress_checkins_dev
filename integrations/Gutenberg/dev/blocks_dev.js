@@ -1,5 +1,8 @@
-wp.blocks.registerBlockType("btdev-inscriere/form", {
-    title: "Entry Form Add",
+const { __ } = wp.i18n;
+const { registerBlockType } = wp.blocks;
+
+registerBlockType("btdev-inscriere/form", {
+    title: __("Entry Form Add"),
     icon: "smiley",
     category: "btdev-inscrieri",
     attributes: {
@@ -60,8 +63,8 @@ wp.blocks.registerBlockType("btdev-inscriere/form", {
     },
 });
 
-wp.blocks.registerBlockType("btdev-inscriere/list", {
-    title: "Lists",
+registerBlockType("btdev-inscriere/list", {
+    title: __("Lists"),
     icon: "smiley",
     category: "btdev-inscrieri",
     attributes: {
@@ -147,12 +150,12 @@ wp.blocks.registerBlockType("btdev-inscriere/list", {
     },
 });
 
-wp.blocks.registerBlockType("btdev-inscriere/summary", {
-    title: "Summary",
+registerBlockType("btdev-inscriere/summary", {
+    title: __("Summary"),
     icon: "smiley",
     category: "btdev-inscrieri",
     attributes: {
-        formName: { type: "string" },
+        formName: { type: "string", default: "" },
     },
 
     edit: function (props) {
@@ -165,24 +168,26 @@ wp.blocks.registerBlockType("btdev-inscriere/summary", {
             forms.push([key, value.title]);
         }
 
-        return React.createElement(
-            "div",
-            null,
-            React.createElement("h4", null, "BTDEV Inscrieri - Liste"),
-            React.createElement(
-                "select",
-                {
-                    value: props.attributes.formName,
-                    onChange: updateFormName,
-                },
-                ...forms.map((val) => {
-                    return React.createElement(
-                        "option",
-                        { value: val[0] },
-                        val[1]
-                    );
-                })
-            )
+        return (
+            <div>
+                <h4>{__("BTDEV Summary")}</h4>
+                <select onChange={updateFormName}>
+                    {forms.map((val) => {
+                        return (
+                            <option
+                                value={val[0]}
+                                selected={
+                                    val[0] === props.attributes.formName
+                                        ? true
+                                        : false
+                                }
+                            >
+                                {val[1]}
+                            </option>
+                        );
+                    })}
+                </select>
+            </div>
         );
     },
     save: function (props) {
