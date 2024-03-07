@@ -1,6 +1,6 @@
 /vendor
 /node_modules/
-/integrations/Gutenberg/dev/node_modules
+/integrations/Gutenberg/node_modules
 /test-results/
 /playwright-report/
 /blob-report/

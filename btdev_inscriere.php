@@ -37,6 +37,9 @@ use BTDEV_INSCRIERI\Classes\Submission as BTDEV_INSCRIERI_SUBMISSION;
 use BTDEV_INSCRIERI\Classes\Tables as BTDEV_INSCRIERI_TABLES;
 use BTDEV_INSCRIERI\Classes\ThirdParty\Captcha as BTDEV_INSCRIERI_THIRDPARTY_CAPTCHA;
 
+use BTDEV_INSCRIERI\Integrations\Gutenberg\Gutenberg as BTDEV_INSCRIERI_INTEGRATIONS_GUTENBERG;
+use BTDEV_INSCRIERI\Integrations\Elementor\Elementor as BTDEV_INSCRIERI_INTEGRATIONS_ELEMENTOR;
+
 if (!defined('ABSPATH')) {
     exit;
 }
@@ -67,7 +70,7 @@ class Main
         add_action('init', array(new BTDEV_INSCRIERI_API_ENTRIES(), 'add_ajax_handles'));
         add_action('init', array(new BTDEV_INSCRIERI_API_SUBMISSIONS(), 'add_ajax_handles'));
 
-        add_action('admin_init', array($this, 'load_integrations'));
+        add_action('init', array($this, 'load_integrations'));
     }
 
     public function add_scripts_css()
@@ -306,10 +309,10 @@ class Main
 
     public function load_integrations()
     {
-        require_once 'integrations/Gutenberg/integrate.php';
+        new BTDEV_INSCRIERI_INTEGRATIONS_GUTENBERG();
 
-        if (is_plugin_active('elementor/elementor.php')) {
-            require_once 'integrations/Elementor/integrate.php';
+        if (!defined('ELEMENTOR_TESTS')) {
+            new BTDEV_INSCRIERI_INTEGRATIONS_ELEMENTOR();
         }
     }
 }
