@@ -124,6 +124,7 @@ class Main
     public function admin_init_assets()
     {
         wp_enqueue_script('btdev_inscriere_main_admin_script', $this->utils_get_absolute_url() . 'assets/admin/script.js', array('jquery'), $this->utils_get_assets_version(), true);
+        wp_enqueue_script('btdev_inscriere_admin_forms_form', $this->utils_get_absolute_url() . 'assets/admin/form_html/build/index.js', array(), $this->utils_get_assets_version(), true);
         $this->common_assets(true);
     }
 

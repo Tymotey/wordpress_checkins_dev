@@ -4,11 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "postInstall": "node _js_custom_scripts/postInstall.js",
-    "prepareLive": "node _js_custom_scripts/prepareLive.js",
-    "devAll": "node _js_custom_scripts/dev.js",
-    "devBlocks": "node _js_custom_scripts/dev.js blocks",
-    "devAdmin": "node _js_custom_scripts/dev.js admin"
+    "Main-postInstall": "node _js_custom_scripts/postInstall.js",
+    "Main-prepareLive": "node _js_custom_scripts/prepareLive.js",
+    "Main-deleteNodes": "node _js_custom_scripts/deleteNodes.js",
+    "Main-devAll": "node _js_custom_scripts/dev.js",
+    "Main-devBlocks": "node _js_custom_scripts/dev.js blocks",
+    "Main-devAdmin": "node _js_custom_scripts/dev.js admin"
   },
   "keywords": [],
   "author": "",

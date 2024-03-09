@@ -84,6 +84,9 @@ class Form extends A_POSTTYPE
             )
         );
 
-        $this->register_post_type_meta_box(__('Form setstings', 'btdev_inscriere_text'), '<div id="btdev_inscriere_edit_form">Loading data...</div>');
+        $this->register_post_type_meta_box(
+            __('Form setstings', 'btdev_inscriere_text'),
+            '<div id="btdev_inscriere_edit_form">Loading data...</div>'
+        );
     }
 }
