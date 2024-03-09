@@ -2,6 +2,51 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/elements/formFormsCategory.jsx":
+/*!********************************************!*\
+  !*** ./src/elements/formFormsCategory.jsx ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   FormsCategory: () => (/* binding */ FormsCategory)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _hooks_formFormsContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../hooks/formFormsContext */ "./src/hooks/formFormsContext.jsx");
+
+
+
+
+function FormsCategory(props) {
+  console.log(props);
+  const formFormsContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_hooks_formFormsContext__WEBPACK_IMPORTED_MODULE_2__.FormFormsContext);
+  const [opened, setOpened] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(props.catIndex === 0 ? true : false);
+  const toggleOpen = () => {
+    setOpened(!opened);
+  };
+  let elClasses = ["category-container"];
+  if (opened) {
+    elClasses.push("opened");
+  }
+  elClasses = elClasses.join(" ");
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    key: props.catKey,
+    className: elClasses
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "category-title",
+    onClick: toggleOpen
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)(props.catSettings.title, "btdev_inscriere_text")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "category-content"
+  }, "aaaaaaa"));
+}
+
+
+/***/ }),
+
 /***/ "./src/elements/formsForm.jsx":
 /*!************************************!*\
   !*** ./src/elements/formsForm.jsx ***!
@@ -14,6 +59,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _hooks_formFormsContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../hooks/formFormsContext */ "./src/hooks/formFormsContext.jsx");
+/* harmony import */ var _formFormsCategory__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./formFormsCategory */ "./src/elements/formFormsCategory.jsx");
+/* harmony import */ var _info_constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../info/constants */ "./src/info/constants.js");
+
+
+
 
 
 function FormsForm() {
@@ -22,38 +73,367 @@ function FormsForm() {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     settingsTextarea.current.value = JSON.stringify(settings);
   }, [settings]);
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null);
+  console.log(settings);
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_hooks_formFormsContext__WEBPACK_IMPORTED_MODULE_1__.FormFormsContextElement, {
+    value: {
+      settings,
+      setSettings,
+      textarea: settingsTextarea
+    }
+  }, Object.entries(_info_constants__WEBPACK_IMPORTED_MODULE_3__.formStructure).map((element, index) => {
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_formFormsCategory__WEBPACK_IMPORTED_MODULE_2__.FormsCategory, {
+      key: element[0],
+      catIndex: index,
+      catKey: element[0],
+      catSettings: element[1]
+    });
+  }));
 }
 
 /***/ }),
 
-/***/ "./src/index.js":
-/*!**********************!*\
-  !*** ./src/index.js ***!
-  \**********************/
+/***/ "./src/hooks/formFormsContext.jsx":
+/*!****************************************!*\
+  !*** ./src/hooks/formFormsContext.jsx ***!
+  \****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   FormFormsContext: () => (/* binding */ FormFormsContext),
+/* harmony export */   FormFormsContextElement: () => (/* binding */ FormFormsContextElement)
+/* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _elements_formsForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./elements/formsForm */ "./src/elements/formsForm.jsx");
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./style.scss */ "./src/style.scss");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "lodash");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _info_constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../info/constants */ "./src/info/constants.js");
 
 
 
 
+const defaultValues = {
+  textarea: {},
+  settings: {},
+  setSettings: val => {}
+};
+const FormFormsContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.createContext)(defaultValues);
+const FormFormsContextElement = props => {
+  const {
+    children,
+    value
+  } = props;
 
-const domNode = document.getElementById("btdev_inscriere_edit_form");
-const root = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createRoot)(domNode);
-root.render((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_elements_formsForm__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+  // Vars
+  const [settings, setSettings] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(value !== undefined ? value?.settings : false);
+  let changed = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
+  if (!lodash__WEBPACK_IMPORTED_MODULE_1___default().isEqual(changed.current, value)) {
+    changed.current = value;
+  }
+  let newValue = changed.current;
+
+  // Functions
+
+  // Return Data
+  const data = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => {
+    return lodash__WEBPACK_IMPORTED_MODULE_1___default().merge({}, defaultValues, newValue, {
+      settings,
+      setSettings
+    });
+  }, [settings, setSettings]);
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(FormFormsContext.Provider, {
+    value: data
+  }, children));
+};
+
 
 /***/ }),
 
-/***/ "./src/style.scss":
+/***/ "./src/info/constants.js":
+/*!*******************************!*\
+  !*** ./src/info/constants.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   currenciesOptions: () => (/* binding */ currenciesOptions),
+/* harmony export */   enabledOptions: () => (/* binding */ enabledOptions),
+/* harmony export */   formStructure: () => (/* binding */ formStructure),
+/* harmony export */   getEnabledOptions: () => (/* binding */ getEnabledOptions),
+/* harmony export */   paymentsOptions: () => (/* binding */ paymentsOptions)
+/* harmony export */ });
+const enabledOptions = [{
+  value: "true",
+  title: "Enabled"
+}, {
+  value: "false",
+  title: "Disabled"
+}];
+const getEnabledOptions = function (defaultValue = true) {
+  return enabledOptions;
+};
+const paymentsOptions = [{
+  value: "stripe",
+  title: "Stripe",
+  default: true
+}, {
+  value: "ordinPlata",
+  title: "Ordin de Plata"
+}];
+const currenciesOptions = [{
+  value: "EUR",
+  title: "EUR",
+  default: true
+}, {
+  value: "RON",
+  title: "RON"
+}, {
+  value: "USD",
+  title: "USD"
+}];
+const formStructure = {
+  mode: {
+    singleInput: false,
+    title: "Mode",
+    type: "select",
+    options: [{
+      value: "test",
+      title: "Test",
+      default: true
+    }, {
+      value: "live",
+      title: "Live"
+    }]
+  },
+  table: {
+    singleInput: false,
+    title: "SQL Table",
+    required: true
+  },
+  tandc: {
+    title: "Terms and Conditions",
+    fields: {
+      enabled: {
+        title: "Enabled",
+        type: "select",
+        options: getEnabledOptions()
+      },
+      text: {
+        title: "Text",
+        default: "I agree that my data will be used to better organize this and future events."
+      }
+    }
+  },
+  captcha: {
+    title: "CAPTCHA",
+    fields: {
+      enabled: {
+        title: "Enabled",
+        type: "select",
+        options: getEnabledOptions()
+      }
+    }
+  },
+  payment: {
+    title: "Payments",
+    fields: {
+      enabled: {
+        title: "Enabled",
+        type: "select",
+        options: getEnabledOptions()
+      },
+      with: {
+        title: "Provider",
+        type: "select",
+        options: paymentsOptions
+      },
+      currency: {
+        title: "Currency",
+        type: "select",
+        options: currenciesOptions
+      },
+      base_price: {
+        title: "Base Price",
+        default: "0",
+        helpText: "Add 2 at the end of value.<br />Eg: 10EUR should write 1000"
+      },
+      payment_for: {
+        title: "Payment description",
+        default: "BTDEV Inscrieri"
+      },
+      description: {
+        title: "Description",
+        default: "BTDEV Inscrieri - Event register"
+      }
+    }
+  },
+  links: {
+    title: "Links",
+    fields: {
+      success: {
+        title: "Form URL",
+        type: "select",
+        options: "pagesPublished"
+      },
+      cancel: {
+        title: "Form URL",
+        type: "select",
+        options: "pagesPublished"
+      }
+    }
+  },
+  emails: {
+    title: "Emails",
+    fields: {
+      description: {
+        title: "Subject post text"
+      },
+      list: {
+        title: "Emails list",
+        fields: {
+          saved: {
+            title: "Submission saved",
+            fields: {
+              enabled: {
+                title: "Enabled",
+                type: "select",
+                options: getEnabledOptions()
+              },
+              subject: {
+                title: "Subject",
+                default: "Submission saved"
+              },
+              content: {
+                title: "Content",
+                type: "wysiwyg"
+              }
+            }
+          },
+          done: {
+            title: "Submission added",
+            fields: {
+              enabled: {
+                title: "Enabled",
+                type: "select",
+                options: getEnabledOptions()
+              },
+              subject: {
+                title: "Subject",
+                default: "Submission succesfully added!"
+              },
+              content: {
+                title: "Content",
+                type: "wysiwyg"
+              }
+            }
+          },
+          not_done: {
+            title: "Submission canceled",
+            fields: {
+              enabled: {
+                title: "Enabled",
+                type: "select",
+                options: getEnabledOptions()
+              },
+              subject: {
+                title: "Subject",
+                default: "Submission canceled!"
+              },
+              content: {
+                title: "Content",
+                type: "wysiwyg"
+              }
+            }
+          },
+          edit: {
+            title: "Submission edited",
+            fields: {
+              enabled: {
+                title: "Enabled",
+                type: "select",
+                options: getEnabledOptions()
+              },
+              subject: {
+                title: "Subject",
+                default: "Submission edited!"
+              },
+              content: {
+                title: "Content",
+                type: "wysiwyg"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  repeater_fields: {
+    title: "Repeater Fields",
+    fields: {
+      firstname: {
+        title: "Firstname",
+        width: "half",
+        notDeletable: true,
+        order: 0
+      },
+      lastname: {
+        title: "Lastname",
+        width: "half",
+        notDeletable: true,
+        order: 1
+      },
+      total_row: {
+        title: "Row total",
+        type: "total_row",
+        width: "full",
+        notDeletable: true,
+        order: 1000
+      }
+    }
+  },
+  tables: {
+    title: "Tables settings",
+    entries_public: {
+      fields: {
+        id: "fields",
+        title: "Fields",
+        type: "select-fields"
+      }
+    },
+    entries_admin: {
+      fields: {
+        title: "Fields",
+        type: "select-fields"
+      }
+    },
+    submissions: {
+      fields: {
+        title: "Fields",
+        type: "select-fields"
+      }
+    },
+    checkins: {
+      fields: {
+        title: "Fields",
+        type: "select-fields"
+      }
+    },
+    presents: {
+      fields: {
+        title: "Fields",
+        type: "select-fields"
+      }
+    }
+  }
+};
+
+
+/***/ }),
+
+/***/ "./src/index.scss":
 /*!************************!*\
-  !*** ./src/style.scss ***!
+  !*** ./src/index.scss ***!
   \************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -73,6 +453,16 @@ module.exports = window["React"];
 
 /***/ }),
 
+/***/ "lodash":
+/*!*************************!*\
+  !*** external "lodash" ***!
+  \*************************/
+/***/ ((module) => {
+
+module.exports = window["lodash"];
+
+/***/ }),
+
 /***/ "@wordpress/element":
 /*!*********************************!*\
   !*** external ["wp","element"] ***!
@@ -80,6 +470,16 @@ module.exports = window["React"];
 /***/ ((module) => {
 
 module.exports = window["wp"]["element"];
+
+/***/ }),
+
+/***/ "@wordpress/i18n":
+/*!******************************!*\
+  !*** external ["wp","i18n"] ***!
+  \******************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["i18n"];
 
 /***/ })
 
@@ -109,42 +509,7 @@ module.exports = window["wp"]["element"];
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = __webpack_modules__;
-/******/ 	
 /************************************************************************/
-/******/ 	/* webpack/runtime/chunk loaded */
-/******/ 	(() => {
-/******/ 		var deferred = [];
-/******/ 		__webpack_require__.O = (result, chunkIds, fn, priority) => {
-/******/ 			if(chunkIds) {
-/******/ 				priority = priority || 0;
-/******/ 				for(var i = deferred.length; i > 0 && deferred[i - 1][2] > priority; i--) deferred[i] = deferred[i - 1];
-/******/ 				deferred[i] = [chunkIds, fn, priority];
-/******/ 				return;
-/******/ 			}
-/******/ 			var notFulfilled = Infinity;
-/******/ 			for (var i = 0; i < deferred.length; i++) {
-/******/ 				var [chunkIds, fn, priority] = deferred[i];
-/******/ 				var fulfilled = true;
-/******/ 				for (var j = 0; j < chunkIds.length; j++) {
-/******/ 					if ((priority & 1 === 0 || notFulfilled >= priority) && Object.keys(__webpack_require__.O).every((key) => (__webpack_require__.O[key](chunkIds[j])))) {
-/******/ 						chunkIds.splice(j--, 1);
-/******/ 					} else {
-/******/ 						fulfilled = false;
-/******/ 						if(priority < notFulfilled) notFulfilled = priority;
-/******/ 					}
-/******/ 				}
-/******/ 				if(fulfilled) {
-/******/ 					deferred.splice(i--, 1)
-/******/ 					var r = fn();
-/******/ 					if (r !== undefined) result = r;
-/******/ 				}
-/******/ 			}
-/******/ 			return result;
-/******/ 		};
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
 /******/ 		// getDefaultExport function for compatibility with non-harmony modules
@@ -185,68 +550,32 @@ module.exports = window["wp"]["element"];
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/jsonp chunk loading */
-/******/ 	(() => {
-/******/ 		// no baseURI
-/******/ 		
-/******/ 		// object to store loaded and loading chunks
-/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
-/******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
-/******/ 		var installedChunks = {
-/******/ 			"index": 0,
-/******/ 			"./style-index": 0
-/******/ 		};
-/******/ 		
-/******/ 		// no chunk on demand loading
-/******/ 		
-/******/ 		// no prefetching
-/******/ 		
-/******/ 		// no preloaded
-/******/ 		
-/******/ 		// no HMR
-/******/ 		
-/******/ 		// no HMR manifest
-/******/ 		
-/******/ 		__webpack_require__.O.j = (chunkId) => (installedChunks[chunkId] === 0);
-/******/ 		
-/******/ 		// install a JSONP callback for chunk loading
-/******/ 		var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
-/******/ 			var [chunkIds, moreModules, runtime] = data;
-/******/ 			// add "moreModules" to the modules object,
-/******/ 			// then flag all "chunkIds" as loaded and fire callback
-/******/ 			var moduleId, chunkId, i = 0;
-/******/ 			if(chunkIds.some((id) => (installedChunks[id] !== 0))) {
-/******/ 				for(moduleId in moreModules) {
-/******/ 					if(__webpack_require__.o(moreModules, moduleId)) {
-/******/ 						__webpack_require__.m[moduleId] = moreModules[moduleId];
-/******/ 					}
-/******/ 				}
-/******/ 				if(runtime) var result = runtime(__webpack_require__);
-/******/ 			}
-/******/ 			if(parentChunkLoadingFunction) parentChunkLoadingFunction(data);
-/******/ 			for(;i < chunkIds.length; i++) {
-/******/ 				chunkId = chunkIds[i];
-/******/ 				if(__webpack_require__.o(installedChunks, chunkId) && installedChunks[chunkId]) {
-/******/ 					installedChunks[chunkId][0]();
-/******/ 				}
-/******/ 				installedChunks[chunkId] = 0;
-/******/ 			}
-/******/ 			return __webpack_require__.O(result);
-/******/ 		}
-/******/ 		
-/******/ 		var chunkLoadingGlobal = globalThis["webpackChunkadmin_forms_form"] = globalThis["webpackChunkadmin_forms_form"] || [];
-/******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
-/******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
-/******/ 	})();
-/******/ 	
 /************************************************************************/
-/******/ 	
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
-/******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["./style-index"], () => (__webpack_require__("./src/index.js")))
-/******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
-/******/ 	
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+(() => {
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _elements_formsForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./elements/formsForm */ "./src/elements/formsForm.jsx");
+/* harmony import */ var _index_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./index.scss */ "./src/index.scss");
+
+
+
+
+
+const domNode = document.getElementById("btdev-inscriere-edit-form");
+if (domNode) {
+  const root = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createRoot)(domNode);
+  root.render((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_elements_formsForm__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+}
+})();
+
 /******/ })()
 ;
 //# sourceMappingURL=index.js.map

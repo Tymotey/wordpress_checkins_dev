@@ -6,10 +6,14 @@
   "title": "Btdev Inscriere - List",
   "category": "btdev-inscrieri",
   "icon": "smiley",
-  "description": "Btdev Inscriere - List",
+  "description": "Entries/Submissions Table List",
   "example": {},
   "supports": {
-    "html": false
+    "html": false,
+    "color": {
+      "background": true,
+      "text": true
+    }
   },
   "textdomain": "btdev_inscriere_text",
   "editorScript": "file:./index.js",

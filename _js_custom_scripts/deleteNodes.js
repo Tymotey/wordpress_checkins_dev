@@ -12,8 +12,8 @@ const deleteDirectories = [
 ];
 try {
     // Cleanup
-    deleteDirectories.forEach((val) => {
-        fs.remove(currentDir + val);
+    deleteDirectories.forEach(async (val) => {
+        await fs.remove(currentDir + val);
     });
 } catch (err) {
     console.error(err);

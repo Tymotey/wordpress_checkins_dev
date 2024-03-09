@@ -2,9 +2,8 @@
 	"name": "gutenberg_blocks",
 	"version": "1.0.0",
 	"description": "Plugin Gutenberg blocks",
-	"author": "BT Devs",
+	"author": "BT Dev",
 	"license": "GPL-2.0-or-later",
-	"main": "build/index.js",
 	"scripts": {
 		"Gtn-build": "wp-scripts build",
 		"Gtn-format": "wp-scripts format",
@@ -13,10 +12,10 @@
 		"Gtn-packages-update": "wp-scripts packages-update",
 		"Gtn-start": "wp-scripts start"
 	},
+	"files": [
+		"*"
+	],
 	"devDependencies": {
 		"@wordpress/scripts": "^27.4.0"
-	},
-	"dependencies": {
-		"btdev_inscriere": "file:../../.."
 	}
 }

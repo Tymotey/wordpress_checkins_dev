@@ -80,6 +80,12 @@ class Main
     {
         add_action('wp_enqueue_scripts', array($this, 'init_assets'));
         add_action('admin_enqueue_scripts', array($this, 'admin_init_assets'));
+        add_action('after_setup_theme', array($this, 'after_setup_theme'));
+    }
+
+    public function after_setup_theme()
+    {
+        add_theme_support('editor-styles');
     }
 
     public function common_assets($is_admin = false)
@@ -124,6 +130,8 @@ class Main
     public function admin_init_assets()
     {
         wp_enqueue_script('btdev_inscriere_main_admin_script', $this->utils_get_absolute_url() . 'assets/admin/script.js', array('jquery'), $this->utils_get_assets_version(), true);
+
+        // React form forms
         $inc = require 'assets/admin/form_html/build/index.asset.php';
         wp_enqueue_script(
             'btdev_inscriere_admin_forms_form',
@@ -132,6 +140,7 @@ class Main
             ($this->utils_is_any_debug() ? $inc['version'] : $this->utils_get_assets_version()),
             true
         );
+        wp_enqueue_style('btdev_inscriere_admin_forms_form', $this->utils_get_absolute_url() . 'assets/admin/form_html/build/index.css', array(), $this->utils_get_assets_version(), 'all');
         $this->common_assets(true);
     }
 

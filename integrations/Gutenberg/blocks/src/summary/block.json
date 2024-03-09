@@ -6,10 +6,14 @@
     "title": "Btdev Inscriere - Summary",
     "category": "btdev-inscrieri",
     "icon": "smiley",
-    "description": "Btdev Inscriere - Summary",
+    "description": "Submission Summary after the payment is done",
     "example": {},
     "supports": {
-        "html": false
+        "html": false,
+        "color": {
+            "background": true,
+            "text": true
+        }
     },
     "textdomain": "btdev_inscriere_text",
     "editorScript": "file:./index.js",

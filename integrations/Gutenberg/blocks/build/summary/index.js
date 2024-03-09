@@ -71,15 +71,18 @@ function Edit({
     });
   }
   const forms = (0,_common_code_js__WEBPACK_IMPORTED_MODULE_3__.getForms)();
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)({
+    className: ["btdev-inscriere-block"]
+  });
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)()
+    ...blockProps
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("BTDEV Inscriere - Summary")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("select", {
-    onChange: updateFormName
+    onChange: updateFormName,
+    defaultValue: attributes.formName
   }, forms.map((val, index) => {
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
       key: "option-form-" + index,
-      value: val[0],
-      selected: val[0] === attributes.formName ? true : false
+      value: val[0]
     }, val[1]);
   })));
 }
@@ -213,7 +216,7 @@ module.exports = window["wp"]["i18n"];
   \********************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"btdev-inscriere/summary","version":"1.0.0","title":"Btdev Inscriere - Summary","category":"btdev-inscrieri","icon":"smiley","description":"Btdev Inscriere - Summary","example":{},"supports":{"html":false},"textdomain":"btdev_inscriere_text","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","render":"file:./render.php","attributes":{"formName":{"type":"string","default":""}}}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"btdev-inscriere/summary","version":"1.0.0","title":"Btdev Inscriere - Summary","category":"btdev-inscrieri","icon":"smiley","description":"Submission Summary after the payment is done","example":{},"supports":{"html":false,"color":{"background":true,"text":true}},"textdomain":"btdev_inscriere_text","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","render":"file:./render.php","attributes":{"formName":{"type":"string","default":""}}}');
 
 /***/ })
 

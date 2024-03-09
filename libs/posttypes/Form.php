@@ -84,9 +84,18 @@ class Form extends A_POSTTYPE
             )
         );
 
-        $this->register_post_type_meta_box(
-            __('Form setstings', 'btdev_inscriere_text'),
-            '<div id="btdev_inscriere_edit_form">Loading data...</div>'
-        );
+        add_action('admin_init', array($this, 'admin_init'));
+    }
+
+    public function admin_init()
+    {
+        global $pagenow;
+
+        if ($pagenow === 'post.php') {
+            $this->register_post_type_meta_box(
+                __('Form settings', 'btdev_inscriere_text'),
+                '<div id="btdev-inscriere-edit-form">Loading data...</div>'
+            );
+        }
     }
 }

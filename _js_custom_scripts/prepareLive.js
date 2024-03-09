@@ -56,16 +56,16 @@ try {
     process.chdir(currentDir);
 
     // copy whole folders
-    copyDirectly.forEach((val) => {
-        fs.copySync(currentDir + val, destinationDirWithPath + val, {
+    copyDirectly.forEach(async (val) => {
+        await fs.copySync(currentDir + val, destinationDirWithPath + val, {
             overwrite: true,
         });
     });
 
     // Overwrite custom files
-    overwriteCustom.forEach((val) => {
-        fs.ensureDir(destinationDirWithPath + val.to);
-        fs.copySync(
+    overwriteCustom.forEach(async (val) => {
+        await fs.ensureDir(destinationDirWithPath + val.to);
+        await fs.copySync(
             currentDir + "_to_live/" + val.from + val.name,
             destinationDirWithPath + val.to + val.name,
             {
