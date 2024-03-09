@@ -3,7 +3,7 @@ import fs from "fs-extra";
 import archiver from "archiver";
 
 const currentDir = process.cwd() + "/";
-const destinationDir = "btdev_inscriere_live";
+const destinationDir = "btdev_inscriere_live_export";
 const destinationDirWithPath = currentDir + "../" + destinationDir + "/";
 
 // Copy files to folder for Live
