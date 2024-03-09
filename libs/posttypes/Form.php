@@ -72,10 +72,10 @@ class Form extends A_POSTTYPE
         $this->set_meta_priority('high');
         $this->set_meta_fields(
             array(
-                'btdev_post_content' => array(
+                'btdev_forms_post_content' => array(
                     'type' => 'textarea',
                     'wrapper' => false,
-                    'input_style' => 'display: nonee;',
+                    'input_style' => 'display: nonee;width: 100%;height: 300px;',
                     'from' => array(
                         'table' => 'post',
                         'field_name' => 'post_content',

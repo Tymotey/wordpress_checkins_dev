@@ -1,7 +1,7 @@
 import chalk from "chalk";
 import fs from "fs-extra";
 
-const currentDir = process.cwd() + "/../";
+const currentDir = process.cwd() + "/";
 
 // Copy files to folder for Live
 console.log(chalk.cyan("Deleting Nodes"));
