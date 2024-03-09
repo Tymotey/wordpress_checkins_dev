@@ -15,6 +15,17 @@ npm run postInstall
 npx playwright test --ui
 ```
 
-# Refresh composer autload
+# DEV + prepare plugin Live
 
-composer dump-autoload -o
+```
+npm run devAll
+npm run devBlocks
+npm run devAdmin
+==================
+npm run prepareLive
+```
+
+# Help
+
+Refresh composer autload
+`composer dump-autoload -o`

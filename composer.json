@@ -19,6 +19,7 @@
             "BTDEV_INSCRIERI\\Traits\\": "libs/traits/",
             "BTDEV_INSCRIERI\\Forms\\": "libs/forms/",
             "BTDEV_INSCRIERI\\Interfaces\\": "libs/interfaces/",
+            "BTDEV_INSCRIERI\\Posttypes\\": "libs/posttypes/",
             "BTDEV_INSCRIERI\\Integrations\\": "integrations/"
         }
     },

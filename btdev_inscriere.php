@@ -36,6 +36,7 @@ use BTDEV_INSCRIERI\Classes\Shortcodes as BTDEV_INSCRIERI_SHORTCODES;
 use BTDEV_INSCRIERI\Classes\Submission as BTDEV_INSCRIERI_SUBMISSION;
 use BTDEV_INSCRIERI\Classes\Tables as BTDEV_INSCRIERI_TABLES;
 use BTDEV_INSCRIERI\Classes\ThirdParty\Captcha as BTDEV_INSCRIERI_THIRDPARTY_CAPTCHA;
+use BTDEV_INSCRIERI\Posttypes\Form as BTDEV_INSCRIERI_POSTTYPE_FORM;
 
 use BTDEV_INSCRIERI\Integrations\Gutenberg\Gutenberg as BTDEV_INSCRIERI_INTEGRATIONS_GUTENBERG;
 use BTDEV_INSCRIERI\Integrations\Elementor\Elementor as BTDEV_INSCRIERI_INTEGRATIONS_ELEMENTOR;
@@ -63,9 +64,11 @@ class Main
     public function load_module_hooks()
     {
         $this->add_scripts_css();
+        add_action('init', array($this, 'add_post_types'));
         add_action('init', array($this, 'add_shortcodes'));
         add_action('init', array($this, 'add_get_actions'));
         add_action('wp_footer', array($this, 'add_footer_notification'));
+
         add_action('init', array(new BTDEV_INSCRIERI_API_TABLES(), 'add_ajax_handles'));
         add_action('init', array(new BTDEV_INSCRIERI_API_ENTRIES(), 'add_ajax_handles'));
         add_action('init', array(new BTDEV_INSCRIERI_API_SUBMISSIONS(), 'add_ajax_handles'));
@@ -129,6 +132,16 @@ class Main
         echo '<div id="btdev_popup_notifications"></div>';
     }
 
+    public function add_post_types()
+    {
+        $this->add_post_type_form();
+    }
+
+    public function add_post_type_form()
+    {
+        new BTDEV_INSCRIERI_POSTTYPE_FORM();
+    }
+
     public function add_shortcodes()
     {
         $shortcodes = new BTDEV_INSCRIERI_SHORTCODES();
@@ -136,10 +149,12 @@ class Main
         // General
         add_shortcode('bbdev_inscrieri_list_entries', array($shortcodes, 'list_entries'));
         add_shortcode('bbdev_inscrieri_list_payments', array($shortcodes, 'list_payments'));
+
         // For forms
         add_shortcode('bbdev_inscrieri_form', array($shortcodes, 'form'));
-        // TODO: must do edit
+        // TODO: must do edit form/code
         add_shortcode('bbdev_inscrieri_form_edit', array($shortcodes, 'form'));
+
         // For email
         add_shortcode('bbdev_inscrieri_entry_summary', array($shortcodes, 'submission_summary'));
     }

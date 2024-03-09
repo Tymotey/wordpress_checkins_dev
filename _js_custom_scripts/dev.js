@@ -30,7 +30,7 @@ const command =
     '" ' +
     commandToRun.join(" ");
 
-var coffeeProcess = exec(command, ["killOthers=failure"]);
-coffeeProcess.stdout.on("data", function (data) {
+var childProcess = exec(command, ["killOthers=failure"]);
+childProcess.stdout.on("data", function (data) {
     console.log(data);
 });

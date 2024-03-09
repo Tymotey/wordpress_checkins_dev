@@ -1,6 +1,7 @@
 /vendor
 /node_modules/
-/integrations/Gutenberg/node_modules
+/integrations/Gutenberg/blocks/node_modules
+/assets/admin/form_html/node_modules
 /test-results/
 /playwright-report/
 /blob-report/

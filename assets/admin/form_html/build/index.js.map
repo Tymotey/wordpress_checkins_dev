@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","mappings":";;;;;AAAAA,KAAK,CAAC,IAAI,CAAC,C","sources":["webpack://admin_forms_form/./src/index.js"],"sourcesContent":["alert(\"11\");\r\n"],"names":["alert"],"sourceRoot":""}
