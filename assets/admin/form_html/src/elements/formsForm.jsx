@@ -8,19 +8,24 @@ export default function FormsForm() {
         document.getElementById("btdev_forms_post_content")
     );
 
-    const [settings, setSettings] = useState(
+    const [settings, setSettings] = useState(formStructure);
+    const [values, setValues] = useState(
         JSON.parse(settingsTextarea.current.value)
     );
 
     useEffect(() => {
-        settingsTextarea.current.value = JSON.stringify(settings);
-    }, [settings]);
-
-    console.log(settings);
+        settingsTextarea.current.value = JSON.stringify(values);
+    }, [values]);
 
     return (
         <FormFormsContextElement
-            value={{ settings, setSettings, textarea: settingsTextarea }}
+            value={{
+                textarea: settingsTextarea,
+                settings,
+                setSettings,
+                values,
+                setValues,
+            }}
         >
             {Object.entries(formStructure).map((element, index) => {
                 return (
@@ -28,7 +33,6 @@ export default function FormsForm() {
                         key={element[0]}
                         catIndex={index}
                         catKey={element[0]}
-                        catSettings={element[1]}
                     />
                 );
             })}

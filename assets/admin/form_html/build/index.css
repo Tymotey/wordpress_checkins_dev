@@ -5,7 +5,7 @@
   box-sizing: border-box;
 }
 #btdev-inscriere-edit-form .category-container {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   border: 1px solid #000000;
   border-radius: 8px;
 }
@@ -14,6 +14,10 @@
   width: 100%;
   padding: 10px;
   cursor: pointer;
+}
+#btdev-inscriere-edit-form .category-container .category-field-description {
+  margin-top: 0px;
+  font-style: italic;
 }
 #btdev-inscriere-edit-form .category-container .category-content {
   padding: 10px;
