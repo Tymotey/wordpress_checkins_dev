@@ -37,6 +37,7 @@ use BTDEV_INSCRIERI\Classes\Submission as BTDEV_INSCRIERI_SUBMISSION;
 use BTDEV_INSCRIERI\Classes\Tables as BTDEV_INSCRIERI_TABLES;
 use BTDEV_INSCRIERI\Classes\ThirdParty\Captcha as BTDEV_INSCRIERI_THIRDPARTY_CAPTCHA;
 use BTDEV_INSCRIERI\Posttypes\Form as BTDEV_INSCRIERI_POSTTYPE_FORM;
+use BTDEV_INSCRIERI\Forms\DataGeneric as GENERIC_DATA;
 
 use BTDEV_INSCRIERI\Integrations\Gutenberg\Gutenberg as BTDEV_INSCRIERI_INTEGRATIONS_GUTENBERG;
 use BTDEV_INSCRIERI\Integrations\Elementor\Elementor as BTDEV_INSCRIERI_INTEGRATIONS_ELEMENTOR;
@@ -102,9 +103,17 @@ class Main
         ];
 
         if (is_admin()) {
+            global $pagenow;
+            global $post;
+
             $data['forms'] = $this->utils_get_forms('Choose a form');
             $table = new BTDEV_INSCRIERI_TABLES();
             $data['tables'] = $table->get_table_types();
+
+            if ($pagenow === 'post.php' && $post->post_type === 'btdev_forms') {
+                $data_new = new GENERIC_DATA();
+                $data['form_structure'] = json_encode($data_new->default_structure);
+            }
         }
 
         wp_localize_script($handle, $this->utils_get_plugin_js_var(), $data);

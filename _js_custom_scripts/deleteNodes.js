@@ -8,7 +8,7 @@ console.log(chalk.cyan("Deleting Nodes"));
 const deleteDirectories = [
     "assets/admin/form_html/node_modules",
     "integrations/Gutenberg/blocks/node_modules",
-    "node_modules",
+    //"node_modules",
 ];
 try {
     // Cleanup

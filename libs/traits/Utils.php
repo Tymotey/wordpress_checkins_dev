@@ -2,8 +2,6 @@
 
 namespace BTDEV_INSCRIERI\Traits;
 
-use BTDEV_INSCRIERI\Forms\DefaultData as DEFAULT_DATA;
-
 trait Utils
 {
     public function utils_get_absolute_path()

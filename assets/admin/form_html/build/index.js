@@ -75,7 +75,7 @@ function FormsCategoryField(props) {
       className: "category-field-wrapper"
     }, elementHtml));
   } else {
-    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, "No field settings found");
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, "No field settings found for \"", path, "\"", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null));
   }
 }
 

@@ -8,7 +8,9 @@ export default function FormsForm() {
         document.getElementById("btdev_forms_post_content")
     );
 
-    const [settings, setSettings] = useState(formStructure);
+    const [settings, setSettings] = useState(
+        window.btdev_inscriere_ajax.form_structure
+    );
     const [values, setValues] = useState(
         JSON.parse(settingsTextarea.current.value)
     );

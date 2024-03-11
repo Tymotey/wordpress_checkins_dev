@@ -1,6 +1,5 @@
 import _ from "lodash";
 import { createContext, useMemo, useRef, useState } from "react";
-import { defaultFormStructure } from "../info/constants";
 
 const defaultValues = {
     textarea: {},

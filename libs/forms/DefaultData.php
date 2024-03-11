@@ -386,6 +386,378 @@ abstract class DefaultData implements InterfaceForm
             ],
         ],
     ];
+    public $default_structure = array(
+        'mode' =>
+            array(
+                'isFieldOnly' => true,
+                'id' => 'mode',
+                'title' => 'Mode',
+                'type' => 'select',
+                'options' =>
+                    array(
+                        0 =>
+                            array(
+                                'value' => 'test',
+                                'title' => 'Test',
+                                'default' => true,
+                            ),
+                        1 =>
+                            array(
+                                'value' => 'live',
+                                'title' => 'Live',
+                            ),
+                    ),
+            ),
+        'table' =>
+            array(
+                'isFieldOnly' => true,
+                'id' => 'table',
+                'title' => 'SQL Table',
+                'helpDescription' => 'Name of SQL Table',
+                'required' => true,
+            ),
+        'tandc' =>
+            array(
+                'id' => 'tandc',
+                'title' => 'Terms and Conditions',
+                'fieldsList' =>
+                    array(
+                        'enabled' =>
+                            array(
+                                'id' => 'enabled',
+                                'title' => 'Enabled',
+                                'type' => 'select',
+                                'options' => 'enabledOptions-true',
+                            ),
+                        'text' =>
+                            array(
+                                'id' => 'text',
+                                'title' => 'Text',
+                                'default' => 'I agree that my data will be used to better organize this and future events.',
+                            ),
+                    ),
+            ),
+        'captcha' =>
+            array(
+                'id' => 'captcha',
+                'title' => 'CAPTCHA',
+                'fieldsList' =>
+                    array(
+                        'enabled' =>
+                            array(
+                                'id' => 'captcha',
+                                'title' => 'Enabled',
+                                'type' => 'select',
+                                'options' => 'enabledOptions-true',
+                            ),
+                    ),
+            ),
+        'payment' =>
+            array(
+                'id' => 'payment',
+                'title' => 'Payments',
+                'fieldsList' =>
+                    array(
+                        'enabled' =>
+                            array(
+                                'id' => 'enabled',
+                                'title' => 'Enabled',
+                                'type' => 'select',
+                                'options' => 'enabledOptions-true',
+                            ),
+                        'with' =>
+                            array(
+                                'id' => 'with',
+                                'title' => 'Provider',
+                                'type' => 'select',
+                                'options' => 'paymentsOptions',
+                            ),
+                        'currency' =>
+                            array(
+                                'id' => 'currency',
+                                'title' => 'Currency',
+                                'type' => 'select',
+                                'options' => 'currenciesOptions',
+                            ),
+                        'base_price' =>
+                            array(
+                                'id' => 'base_price',
+                                'title' => 'Base Price',
+                                'default' => '0',
+                                'helpText' => 'Add 2 at the end of value.<br />Eg: 10EUR should write 1000',
+                            ),
+                        'payment_for' =>
+                            array(
+                                'id' => 'payment_for',
+                                'title' => 'Payment description',
+                                'default' => 'BTDEV Inscrieri',
+                            ),
+                        'description' =>
+                            array(
+                                'id' => 'description',
+                                'title' => 'Description',
+                                'default' => 'BTDEV Inscrieri - Event register',
+                            ),
+                    ),
+            ),
+        'links' =>
+            array(
+                'id' => 'links',
+                'title' => 'Links',
+                'fieldsList' =>
+                    array(
+                        'success' =>
+                            array(
+                                'id' => 'success',
+                                'title' => 'Form URL',
+                                'type' => 'select',
+                                'options' => 'pagesPublished',
+                            ),
+                        'cancel' =>
+                            array(
+                                'id' => 'cancel',
+                                'title' => 'Form URL',
+                                'type' => 'select',
+                                'options' => 'pagesPublished',
+                            ),
+                    ),
+            ),
+        'emails' =>
+            array(
+                'id' => 'emails',
+                'title' => 'Emails',
+                'fieldsList' =>
+                    array(
+                        'description' =>
+                            array(
+                                'id' => 'description',
+                                'title' => 'Subject post text',
+                            ),
+                        'list' =>
+                            array(
+                                'id' => 'list',
+                                'title' => 'Emails list',
+                                'fieldsList' =>
+                                    array(
+                                        'saved' =>
+                                            array(
+                                                'id' => 'saved',
+                                                'title' => 'Submission saved',
+                                                'fieldsList' =>
+                                                    array(
+                                                        'enabled' =>
+                                                            array(
+                                                                'id' => 'enabled',
+                                                                'title' => 'Enabled',
+                                                                'type' => 'select',
+                                                                'options' => 'enabledOptions-true',
+                                                            ),
+                                                        'subject' =>
+                                                            array(
+                                                                'id' => 'subject',
+                                                                'title' => 'Subject',
+                                                                'default' => 'Submission saved',
+                                                            ),
+                                                        'content' =>
+                                                            array(
+                                                                'id' => 'content',
+                                                                'title' => 'Content',
+                                                                'type' => 'wysiwyg',
+                                                            ),
+                                                    ),
+                                            ),
+                                        'done' =>
+                                            array(
+                                                'id' => 'done',
+                                                'title' => 'Submission added',
+                                                'fieldsList' =>
+                                                    array(
+                                                        'enabled' =>
+                                                            array(
+                                                                'id' => 'enabled',
+                                                                'title' => 'Enabled',
+                                                                'type' => 'select',
+                                                                'options' => 'enabledOptions-true',
+                                                            ),
+                                                        'subject' =>
+                                                            array(
+                                                                'id' => 'subject',
+                                                                'title' => 'Subject',
+                                                                'default' => 'Submission succesfully added!',
+                                                            ),
+                                                        'content' =>
+                                                            array(
+                                                                'id' => 'content',
+                                                                'title' => 'Content',
+                                                                'type' => 'wysiwyg',
+                                                            ),
+                                                    ),
+                                            ),
+                                        'not_done' =>
+                                            array(
+                                                'id' => 'not_done',
+                                                'title' => 'Submission canceled',
+                                                'fieldsList' =>
+                                                    array(
+                                                        'enabled' =>
+                                                            array(
+                                                                'id' => 'enabled',
+                                                                'title' => 'Enabled',
+                                                                'type' => 'select',
+                                                                'options' => 'enabledOptions-true',
+                                                            ),
+                                                        'subject' =>
+                                                            array(
+                                                                'id' => 'subject',
+                                                                'title' => 'Subject',
+                                                                'default' => 'Submission canceled!',
+                                                            ),
+                                                        'content' =>
+                                                            array(
+                                                                'id' => 'content',
+                                                                'title' => 'Content',
+                                                                'type' => 'wysiwyg',
+                                                            ),
+                                                    ),
+                                            ),
+                                        'edit' =>
+                                            array(
+                                                'id' => 'edit',
+                                                'title' => 'Submission edited',
+                                                'fieldsList' =>
+                                                    array(
+                                                        'enabled' =>
+                                                            array(
+                                                                'id' => 'enabled',
+                                                                'title' => 'Enabled',
+                                                                'type' => 'select',
+                                                                'options' => 'enabledOptions-true',
+                                                            ),
+                                                        'subject' =>
+                                                            array(
+                                                                'id' => 'subject',
+                                                                'title' => 'Subject',
+                                                                'default' => 'Submission edited!',
+                                                            ),
+                                                        'content' =>
+                                                            array(
+                                                                'id' => 'content',
+                                                                'title' => 'Content',
+                                                                'type' => 'wysiwyg',
+                                                            ),
+                                                    ),
+                                            ),
+                                    ),
+                            ),
+                    ),
+            ),
+        'repeater_fields' =>
+            array(
+                'id' => 'repeater_fields',
+                'title' => 'Repeater Fields',
+                'fieldsList' =>
+                    array(
+                        'firstname' =>
+                            array(
+                                'id' => 'firstname',
+                                'title' => 'Firstname',
+                                'width' => 'half',
+                                'notDeletable' => true,
+                                'order' => 0,
+                            ),
+                        'lastname' =>
+                            array(
+                                'id' => 'lastname',
+                                'title' => 'Lastname',
+                                'width' => 'half',
+                                'notDeletable' => true,
+                                'order' => 1,
+                            ),
+                        'total_row' =>
+                            array(
+                                'id' => 'total_row',
+                                'title' => 'Row total',
+                                'type' => 'total_row',
+                                'width' => 'full',
+                                'notDeletable' => true,
+                                'order' => 1000,
+                            ),
+                    ),
+            ),
+        'tables' =>
+            array(
+                'id' => 'tables',
+                'title' => 'Tables settings',
+                'fieldsList' =>
+                    array(
+                        'entries_public' =>
+                            array(
+                                'id' => 'entries_public',
+                                'fieldsList' =>
+                                    array(
+                                        'fields' =>
+                                            array(
+                                                'id' => 'fields',
+                                                'title' => 'Fields',
+                                                'type' => 'select-fields',
+                                            ),
+                                    ),
+                            ),
+                        'entries_admin' =>
+                            array(
+                                'id' => 'entries_admin',
+                                'fieldsList' =>
+                                    array(
+                                        'fields' =>
+                                            array(
+                                                'id' => 'fields',
+                                                'title' => 'Fields',
+                                                'type' => 'select-fields',
+                                            ),
+                                    ),
+                            ),
+                        'submissions' =>
+                            array(
+                                'id' => 'submissions',
+                                'fieldsList' =>
+                                    array(
+                                        'fields' =>
+                                            array(
+                                                'id' => 'fields',
+                                                'title' => 'Fields',
+                                                'type' => 'select-fields',
+                                            ),
+                                    ),
+                            ),
+                        'checkins' =>
+                            array(
+                                'id' => 'checkins',
+                                'fieldsList' =>
+                                    array(
+                                        'fields' =>
+                                            array(
+                                                'id' => 'fields',
+                                                'title' => 'Fields',
+                                                'type' => 'select-fields',
+                                            ),
+                                    ),
+                            ),
+                        'presents' =>
+                            array(
+                                'id' => 'presents',
+                                'fieldsList' =>
+                                    array(
+                                        'fields' =>
+                                            array(
+                                                'id' => 'fields',
+                                                'title' => 'Fields',
+                                                'type' => 'select-fields',
+                                            ),
+                                    ),
+                            ),
+                    ),
+            ),
+    );
 
     public $full_data = [];
 

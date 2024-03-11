@@ -67,7 +67,11 @@ function FormsCategoryField(props) {
             </div>
         );
     } else {
-        return <>No field settings found</>;
+        return (
+            <>
+                No field settings found for "{path}"<br />
+            </>
+        );
     }
 }
 
