@@ -2,6 +2,7 @@ import { __ } from "@wordpress/i18n";
 import { useState, useContext } from "react";
 import { FormFormsContext } from "../hooks/formFormsContext";
 import { FormsCategoryField } from "./FormsCategoryField";
+import { FormsCategoryFieldsGroup } from "./FormsCategoryFieldsGroup";
 
 function FormsCategory({ catIndex, catKey }) {
     const formFormsContext = useContext(FormFormsContext);
@@ -36,12 +37,8 @@ function FormsCategory({ catIndex, catKey }) {
                             <FormsCategoryField path={catKey} />
                         )}
                     {!categorySettings.isFieldOnly &&
-                        Object.keys(categorySettings.fieldsList).length > 0 &&
-                        Object.entries(categorySettings.fieldsList).map(
-                            (element, index) => {
-                                console.log(element);
-                                return <>1</>;
-                            }
+                        Object.keys(categorySettings.fieldsList).length > 0 && (
+                            <FormsCategoryFieldsGroup path={catKey} />
                         )}
                 </div>
             </div>

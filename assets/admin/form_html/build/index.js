@@ -38,41 +38,95 @@ function FormsCategoryField(props) {
   // console.log(fieldData, "--fieldData");
   // console.log("-------------FIELD-------------");
 
-  let elType = fieldSettings.type ? fieldSettings.type : "input-text";
-  let elementHtml = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null);
-  switch (elType) {
-    case "input-text":
-    case "input-email":
-      elementHtml = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_formFormsInputs__WEBPACK_IMPORTED_MODULE_3__.FormsInput, {
-        fieldSettings: fieldSettings,
-        fieldData: fieldData,
-        path: path
-      });
-      break;
-    case "select":
-      elementHtml = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_formFormsInputs__WEBPACK_IMPORTED_MODULE_3__.FormsSelect, {
-        fieldSettings: fieldSettings,
-        fieldData: fieldData,
-        path: path
-      });
-      break;
-    case "textarea":
-      elementHtml = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_formFormsInputs__WEBPACK_IMPORTED_MODULE_3__.FormsTextarea, {
-        fieldSettings: fieldSettings,
-        fieldData: fieldData,
-        path: path
-      });
-      break;
+  if (fieldSettings !== undefined && fieldData !== undefined) {
+    let elType = fieldSettings.type ? fieldSettings.type : "input-text";
+    let elementHtml = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null);
+    switch (elType) {
+      case "input-text":
+      case "input-email":
+        elementHtml = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_formFormsInputs__WEBPACK_IMPORTED_MODULE_3__.FormsInput, {
+          fieldSettings: fieldSettings,
+          fieldData: fieldData,
+          path: path
+        });
+        break;
+      case "select":
+        elementHtml = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_formFormsInputs__WEBPACK_IMPORTED_MODULE_3__.FormsSelect, {
+          fieldSettings: fieldSettings,
+          fieldData: fieldData,
+          path: path
+        });
+        break;
+      case "textarea":
+        elementHtml = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_formFormsInputs__WEBPACK_IMPORTED_MODULE_3__.FormsTextarea, {
+          fieldSettings: fieldSettings,
+          fieldData: fieldData,
+          path: path
+        });
+        break;
+    }
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "category-field-container"
+    }, !fieldSettings.isFieldOnly && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", {
+      className: "category-field-title"
+    }, fieldSettings.title), fieldSettings.helpDescription && fieldSettings.helpDescription !== "" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h5", {
+      className: "category-field-description"
+    }, fieldSettings.helpDescription), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "category-field-wrapper"
+    }, elementHtml));
+  } else {
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, "No field settings found");
   }
+}
+
+
+/***/ }),
+
+/***/ "./src/elements/FormsCategoryFieldsGroup.jsx":
+/*!***************************************************!*\
+  !*** ./src/elements/FormsCategoryFieldsGroup.jsx ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   FormsCategoryFieldsGroup: () => (/* binding */ FormsCategoryFieldsGroup)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _hooks_formFormsContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../hooks/formFormsContext */ "./src/hooks/formFormsContext.jsx");
+/* harmony import */ var _FormsCategoryField__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./FormsCategoryField */ "./src/elements/FormsCategoryField.jsx");
+
+
+
+
+
+function FormsCategoryFieldsGroup(props) {
+  const {
+    path
+  } = props;
+  const formFormsContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_hooks_formFormsContext__WEBPACK_IMPORTED_MODULE_2__.FormFormsContext);
+
+  // Get field data
+  let groupSettings = formFormsContext.getSettings(path);
+  let groupData = formFormsContext.getValue(path);
+  // console.log("-------------FIELD-------------");
+  // console.log(path, "--path");
+  // console.log(fieldSettings, "--fieldSettings");
+  // console.log(fieldData, "--fieldData");
+  // console.log("-------------FIELD-------------");
+
+  let groups = Object.entries(groupSettings.fieldsList) || [];
+  console.log(groups, "----");
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "category-field-container"
-  }, !fieldSettings.isFieldOnly && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", {
-    className: "category-field-title"
-  }, fieldSettings.title), fieldSettings.helpDescription && fieldSettings.helpDescription !== "" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h5", {
-    className: "category-field-description"
-  }, fieldSettings.helpDescription), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "category-field-wrapper"
-  }, elementHtml));
+    className: "category-fields-container"
+  }, groups.length > 0 && groups.map((element, index) => {
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_FormsCategoryField__WEBPACK_IMPORTED_MODULE_3__.FormsCategoryField, {
+      path: element[0]
+    });
+  }));
 }
 
 
@@ -94,6 +148,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _hooks_formFormsContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../hooks/formFormsContext */ "./src/hooks/formFormsContext.jsx");
 /* harmony import */ var _FormsCategoryField__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./FormsCategoryField */ "./src/elements/FormsCategoryField.jsx");
+/* harmony import */ var _FormsCategoryFieldsGroup__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./FormsCategoryFieldsGroup */ "./src/elements/FormsCategoryFieldsGroup.jsx");
+
 
 
 
@@ -133,9 +189,8 @@ function FormsCategory({
       className: "category-content"
     }, categorySettings.isFieldOnly && categorySettings.isFieldOnly === true && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_FormsCategoryField__WEBPACK_IMPORTED_MODULE_3__.FormsCategoryField, {
       path: catKey
-    }), !categorySettings.isFieldOnly && Object.keys(categorySettings.fieldsList).length > 0 && Object.entries(categorySettings.fieldsList).map((element, index) => {
-      console.log(element);
-      return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, "1");
+    }), !categorySettings.isFieldOnly && Object.keys(categorySettings.fieldsList).length > 0 && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_FormsCategoryFieldsGroup__WEBPACK_IMPORTED_MODULE_4__.FormsCategoryFieldsGroup, {
+      path: catKey
     })));
   } else {
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("No setting data found", "btdev_inscriere_text"));

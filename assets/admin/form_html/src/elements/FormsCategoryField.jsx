@@ -16,53 +16,59 @@ function FormsCategoryField(props) {
     // console.log(fieldData, "--fieldData");
     // console.log("-------------FIELD-------------");
 
-    let elType = fieldSettings.type ? fieldSettings.type : "input-text";
-    let elementHtml = <></>;
-    switch (elType) {
-        case "input-text":
-        case "input-email":
-            elementHtml = (
-                <FormsInput
-                    fieldSettings={fieldSettings}
-                    fieldData={fieldData}
-                    path={path}
-                />
-            );
-            break;
-        case "select":
-            elementHtml = (
-                <FormsSelect
-                    fieldSettings={fieldSettings}
-                    fieldData={fieldData}
-                    path={path}
-                />
-            );
-            break;
-        case "textarea":
-            elementHtml = (
-                <FormsTextarea
-                    fieldSettings={fieldSettings}
-                    fieldData={fieldData}
-                    path={path}
-                />
-            );
-            break;
-    }
+    if (fieldSettings !== undefined && fieldData !== undefined) {
+        let elType = fieldSettings.type ? fieldSettings.type : "input-text";
+        let elementHtml = <></>;
+        switch (elType) {
+            case "input-text":
+            case "input-email":
+                elementHtml = (
+                    <FormsInput
+                        fieldSettings={fieldSettings}
+                        fieldData={fieldData}
+                        path={path}
+                    />
+                );
+                break;
+            case "select":
+                elementHtml = (
+                    <FormsSelect
+                        fieldSettings={fieldSettings}
+                        fieldData={fieldData}
+                        path={path}
+                    />
+                );
+                break;
+            case "textarea":
+                elementHtml = (
+                    <FormsTextarea
+                        fieldSettings={fieldSettings}
+                        fieldData={fieldData}
+                        path={path}
+                    />
+                );
+                break;
+        }
 
-    return (
-        <div className="category-field-container">
-            {!fieldSettings.isFieldOnly && (
-                <h4 className="category-field-title">{fieldSettings.title}</h4>
-            )}
-            {fieldSettings.helpDescription &&
-                fieldSettings.helpDescription !== "" && (
-                    <h5 className="category-field-description">
-                        {fieldSettings.helpDescription}
-                    </h5>
+        return (
+            <div className="category-field-container">
+                {!fieldSettings.isFieldOnly && (
+                    <h4 className="category-field-title">
+                        {fieldSettings.title}
+                    </h4>
                 )}
-            <div className="category-field-wrapper">{elementHtml}</div>
-        </div>
-    );
+                {fieldSettings.helpDescription &&
+                    fieldSettings.helpDescription !== "" && (
+                        <h5 className="category-field-description">
+                            {fieldSettings.helpDescription}
+                        </h5>
+                    )}
+                <div className="category-field-wrapper">{elementHtml}</div>
+            </div>
+        );
+    } else {
+        return <>No field settings found</>;
+    }
 }
 
 export { FormsCategoryField };
