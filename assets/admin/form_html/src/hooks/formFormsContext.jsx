@@ -1,12 +1,16 @@
 import _ from "lodash";
 import { createContext, useMemo, useRef, useState } from "react";
+import * as constantData from "../info/constants";
 
 const defaultValues = {
     textarea: {},
     settings: {},
     setSettings: (val) => {},
+    getSettings: (path) => {},
     values: {},
     setValues: (val) => {},
+    setValuePath: (path, value) => {},
+    getValue: (path) => {},
 };
 
 const FormFormsContext = createContext(defaultValues);
@@ -24,11 +28,47 @@ const FormFormsContextElement = (props) => {
     );
 
     // Functions
+    const getOptionValues = (functionName) => {
+        let returnVal = [];
+        if (functionName.search("funct|") !== -1) {
+            let tmpName = functionName.split("|");
+            let fnctData = tmpName[1].split("-");
+            let paramsFunction = fnctData.slice(1);
+            switch (fnctData[0]) {
+                case "enabledOptions":
+                    returnVal = constantData.getEnabledOptions([
+                        ...paramsFunction,
+                    ]);
+                    break;
+                case "paymentsOptions":
+                    returnVal = constantData.paymentsOptions;
+                    break;
+                case "currenciesOptions":
+                    returnVal = constantData.currenciesOptions;
+                    break;
+            }
+        }
+
+        return returnVal;
+    };
+
     const getSettings = (path) => {
-        return _.get(settings, path);
+        // console.log(settings, path, "settings, path IN CONTEXT");
+        let settingData = _.get(settings, path) || [];
+        if (settingData !== undefined) {
+            if (
+                settingData.options &&
+                typeof settingData.options === "string"
+            ) {
+                settingData.options = getOptionValues(settingData.options);
+            }
+        }
+
+        return settingData;
     };
 
     const getValue = (path) => {
+        // console.log(values, path, "values, path IN CONTEXT");
         return _.get(values, path);
     };
 

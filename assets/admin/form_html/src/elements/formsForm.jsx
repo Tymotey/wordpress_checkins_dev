@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { FormFormsContextElement } from "../hooks/formFormsContext";
 import { FormsCategory } from "./formFormsCategory";
-import { formStructure } from "../info/constants";
 
 export default function FormsForm() {
     const settingsTextarea = useRef(
@@ -9,7 +8,7 @@ export default function FormsForm() {
     );
 
     const [settings, setSettings] = useState(
-        window.btdev_inscriere_ajax.form_structure
+        JSON.parse(window.btdev_inscriere_ajax.form_structure)
     );
     const [values, setValues] = useState(
         JSON.parse(settingsTextarea.current.value)
@@ -29,7 +28,7 @@ export default function FormsForm() {
                 setValues,
             }}
         >
-            {Object.entries(formStructure).map((element, index) => {
+            {Object.entries(settings).map((element, index) => {
                 return (
                     <FormsCategory
                         key={element[0]}

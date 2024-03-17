@@ -4,11 +4,18 @@ import { FormFormsContext } from "../hooks/formFormsContext";
 import { FormsInput, FormsSelect, FormsTextarea } from "./formFormsInputs";
 
 function FormsCategoryField(props) {
-    const { path } = props;
+    const { path, pathS } = props;
     const formFormsContext = useContext(FormFormsContext);
 
     // Get field data
-    let fieldSettings = formFormsContext.getSettings(path);
+    // console.log("pathS: ", pathS);
+    // console.log("path: ", path);
+    let fieldSettings = formFormsContext.getSettings(pathS);
+    // console.log(
+    //     "fieldSettings",
+    //     fieldSettings,
+    //     "-------------------SETTINGS-------------"
+    // );
     let fieldData = formFormsContext.getValue(path);
     // console.log("-------------FIELD-------------");
     // console.log(path, "--path");
@@ -16,7 +23,7 @@ function FormsCategoryField(props) {
     // console.log(fieldData, "--fieldData");
     // console.log("-------------FIELD-------------");
 
-    if (fieldSettings !== undefined && fieldData !== undefined) {
+    if (fieldSettings !== undefined) {
         let elType = fieldSettings.type ? fieldSettings.type : "input-text";
         let elementHtml = <></>;
         switch (elType) {
@@ -39,6 +46,7 @@ function FormsCategoryField(props) {
                     />
                 );
                 break;
+            case "wysiwyg":
             case "textarea":
                 elementHtml = (
                     <FormsTextarea
@@ -52,11 +60,13 @@ function FormsCategoryField(props) {
 
         return (
             <div className="category-field-container">
-                {!fieldSettings.isFieldOnly && (
-                    <h4 className="category-field-title">
-                        {fieldSettings.title}
-                    </h4>
-                )}
+                FIELD
+                <br />
+                Path: {JSON.stringify(path)}
+                <br />
+                PathS: {JSON.stringify(pathS)}
+                <br />
+                <h4 className="category-field-title">{fieldSettings.title}</h4>
                 {fieldSettings.helpDescription &&
                     fieldSettings.helpDescription !== "" && (
                         <h5 className="category-field-description">
@@ -69,7 +79,7 @@ function FormsCategoryField(props) {
     } else {
         return (
             <>
-                No field settings found for "{path}"<br />
+                No field settings found for "{JSON.stringify(path)}"<br />
             </>
         );
     }

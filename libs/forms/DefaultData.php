@@ -389,7 +389,6 @@ abstract class DefaultData implements InterfaceForm
     public $default_structure = array(
         'mode' =>
             array(
-                'isFieldOnly' => true,
                 'id' => 'mode',
                 'title' => 'Mode',
                 'type' => 'select',
@@ -408,130 +407,131 @@ abstract class DefaultData implements InterfaceForm
                             ),
                     ),
             ),
-        'table' =>
-            array(
-                'isFieldOnly' => true,
-                'id' => 'table',
-                'title' => 'SQL Table',
-                'helpDescription' => 'Name of SQL Table',
-                'required' => true,
-            ),
-        'tandc' =>
-            array(
-                'id' => 'tandc',
-                'title' => 'Terms and Conditions',
-                'fieldsList' =>
-                    array(
-                        'enabled' =>
-                            array(
-                                'id' => 'enabled',
-                                'title' => 'Enabled',
-                                'type' => 'select',
-                                'options' => 'enabledOptions-true',
-                            ),
-                        'text' =>
-                            array(
-                                'id' => 'text',
-                                'title' => 'Text',
-                                'default' => 'I agree that my data will be used to better organize this and future events.',
-                            ),
-                    ),
-            ),
-        'captcha' =>
-            array(
-                'id' => 'captcha',
-                'title' => 'CAPTCHA',
-                'fieldsList' =>
-                    array(
-                        'enabled' =>
-                            array(
-                                'id' => 'captcha',
-                                'title' => 'Enabled',
-                                'type' => 'select',
-                                'options' => 'enabledOptions-true',
-                            ),
-                    ),
-            ),
-        'payment' =>
-            array(
-                'id' => 'payment',
-                'title' => 'Payments',
-                'fieldsList' =>
-                    array(
-                        'enabled' =>
-                            array(
-                                'id' => 'enabled',
-                                'title' => 'Enabled',
-                                'type' => 'select',
-                                'options' => 'enabledOptions-true',
-                            ),
-                        'with' =>
-                            array(
-                                'id' => 'with',
-                                'title' => 'Provider',
-                                'type' => 'select',
-                                'options' => 'paymentsOptions',
-                            ),
-                        'currency' =>
-                            array(
-                                'id' => 'currency',
-                                'title' => 'Currency',
-                                'type' => 'select',
-                                'options' => 'currenciesOptions',
-                            ),
-                        'base_price' =>
-                            array(
-                                'id' => 'base_price',
-                                'title' => 'Base Price',
-                                'default' => '0',
-                                'helpText' => 'Add 2 at the end of value.<br />Eg: 10EUR should write 1000',
-                            ),
-                        'payment_for' =>
-                            array(
-                                'id' => 'payment_for',
-                                'title' => 'Payment description',
-                                'default' => 'BTDEV Inscrieri',
-                            ),
-                        'description' =>
-                            array(
-                                'id' => 'description',
-                                'title' => 'Description',
-                                'default' => 'BTDEV Inscrieri - Event register',
-                            ),
-                    ),
-            ),
-        'links' =>
-            array(
-                'id' => 'links',
-                'title' => 'Links',
-                'fieldsList' =>
-                    array(
-                        'success' =>
-                            array(
-                                'id' => 'success',
-                                'title' => 'Form URL',
-                                'type' => 'select',
-                                'options' => 'pagesPublished',
-                            ),
-                        'cancel' =>
-                            array(
-                                'id' => 'cancel',
-                                'title' => 'Form URL',
-                                'type' => 'select',
-                                'options' => 'pagesPublished',
-                            ),
-                    ),
-            ),
+        // 'table' =>
+        //     array(
+        //         'id' => 'table',
+        //         'title' => 'SQL Table',
+        //         'helpDescription' => 'Name of SQL Table',
+        //         'required' => true,
+        //     ),
+        // 'tandc' =>
+        //     array(
+        //         'id' => 'tandc',
+        //         'title' => 'Terms and Conditions',
+        //         'fieldsList' =>
+        //             array(
+        //                 'enabled' =>
+        //                     array(
+        //                         'id' => 'enabled',
+        //                         'title' => 'Enabled',
+        //                         'type' => 'select',
+        //                         'options' => 'funct|enabledOptions-true',
+        //                     ),
+        //                 'text' =>
+        //                     array(
+        //                         'id' => 'text',
+        //                         'title' => 'Text',
+        //                         'default' => 'I agree that my data will be used to better organize this and future events.',
+        //                     ),
+        //             ),
+        //     ),
+        // 'captcha' =>
+        //     array(
+        //         'id' => 'captcha',
+        //         'title' => 'CAPTCHA',
+        //         'fieldsList' =>
+        //             array(
+        //                 'enabled' =>
+        //                     array(
+        //                         'id' => 'captcha',
+        //                         'title' => 'Enabled',
+        //                         'type' => 'select',
+        //                         'options' => 'funct|enabledOptions-true',
+        //                     ),
+        //             ),
+        //     ),
+        // 'payment' =>
+        //     array(
+        //         'id' => 'payment',
+        //         'title' => 'Payments',
+        //         'fieldsList' =>
+        //             array(
+        //                 'enabled' =>
+        //                     array(
+        //                         'id' => 'enabled',
+        //                         'title' => 'Enabled',
+        //                         'type' => 'select',
+        //                         'options' => 'funct|enabledOptions-true',
+        //                     ),
+        //                 'with' =>
+        //                     array(
+        //                         'id' => 'with',
+        //                         'title' => 'Provider',
+        //                         'type' => 'select',
+        //                         'multiple' => true,
+        //                         'options' => 'funct|paymentsOptions',
+        //                     ),
+        //                 'currency' =>
+        //                     array(
+        //                         'id' => 'currency',
+        //                         'title' => 'Currency',
+        //                         'type' => 'select',
+        //                         'options' => 'funct|currenciesOptions',
+        //                     ),
+        //                 'base_price' =>
+        //                     array(
+        //                         'id' => 'base_price',
+        //                         'title' => 'Base Price',
+        //                         'default' => '0',
+        //                         'helpText' => 'Add 2 at the end of value.<br />Eg: 10EUR should write 1000',
+        //                     ),
+        //                 'payment_for' =>
+        //                     array(
+        //                         'id' => 'payment_for',
+        //                         'title' => 'Payment description',
+        //                         'default' => 'BTDEV Inscrieri',
+        //                     ),
+        //                 'description' =>
+        //                     array(
+        //                         'id' => 'description',
+        //                         'title' => 'Description',
+        //                         'default' => 'BTDEV Inscrieri - Event register',
+        //                     ),
+        //             ),
+        //     ),
+        // 'links' =>
+        //     array(
+        //         'id' => 'links',
+        //         'title' => 'Links',
+        //         'fieldsList' =>
+        //             array(
+        //                 'success' =>
+        //                     array(
+        //                         'id' => 'success',
+        //                         'title' => 'Form URL',
+        //                         'type' => 'select',
+        //                         'options' => 'list|pagesPublished',
+        //                     ),
+        //                 'cancel' =>
+        //                     array(
+        //                         'id' => 'cancel',
+        //                         'title' => 'Form URL',
+        //                         'type' => 'select',
+        //                         'options' => 'list|pagesPublished',
+        //                     ),
+        //             ),
+        //     ),
         'emails' =>
             array(
                 'id' => 'emails',
                 'title' => 'Emails',
+                'helpDescription' => 'Emails settings',
                 'fieldsList' =>
                     array(
                         'description' =>
                             array(
                                 'id' => 'description',
-                                'title' => 'Subject post text',
+                                'title' => 'Post subject text',
                             ),
                         'list' =>
                             array(
@@ -550,7 +550,7 @@ abstract class DefaultData implements InterfaceForm
                                                                 'id' => 'enabled',
                                                                 'title' => 'Enabled',
                                                                 'type' => 'select',
-                                                                'options' => 'enabledOptions-true',
+                                                                'options' => 'funct|enabledOptions-true',
                                                             ),
                                                         'subject' =>
                                                             array(
@@ -577,7 +577,7 @@ abstract class DefaultData implements InterfaceForm
                                                                 'id' => 'enabled',
                                                                 'title' => 'Enabled',
                                                                 'type' => 'select',
-                                                                'options' => 'enabledOptions-true',
+                                                                'options' => 'funct|enabledOptions-true',
                                                             ),
                                                         'subject' =>
                                                             array(
@@ -604,7 +604,7 @@ abstract class DefaultData implements InterfaceForm
                                                                 'id' => 'enabled',
                                                                 'title' => 'Enabled',
                                                                 'type' => 'select',
-                                                                'options' => 'enabledOptions-true',
+                                                                'options' => 'funct|enabledOptions-true',
                                                             ),
                                                         'subject' =>
                                                             array(
@@ -631,7 +631,7 @@ abstract class DefaultData implements InterfaceForm
                                                                 'id' => 'enabled',
                                                                 'title' => 'Enabled',
                                                                 'type' => 'select',
-                                                                'options' => 'enabledOptions-true',
+                                                                'options' => 'funct|enabledOptions-true',
                                                             ),
                                                         'subject' =>
                                                             array(
@@ -651,112 +651,112 @@ abstract class DefaultData implements InterfaceForm
                             ),
                     ),
             ),
-        'repeater_fields' =>
-            array(
-                'id' => 'repeater_fields',
-                'title' => 'Repeater Fields',
-                'fieldsList' =>
-                    array(
-                        'firstname' =>
-                            array(
-                                'id' => 'firstname',
-                                'title' => 'Firstname',
-                                'width' => 'half',
-                                'notDeletable' => true,
-                                'order' => 0,
-                            ),
-                        'lastname' =>
-                            array(
-                                'id' => 'lastname',
-                                'title' => 'Lastname',
-                                'width' => 'half',
-                                'notDeletable' => true,
-                                'order' => 1,
-                            ),
-                        'total_row' =>
-                            array(
-                                'id' => 'total_row',
-                                'title' => 'Row total',
-                                'type' => 'total_row',
-                                'width' => 'full',
-                                'notDeletable' => true,
-                                'order' => 1000,
-                            ),
-                    ),
-            ),
-        'tables' =>
-            array(
-                'id' => 'tables',
-                'title' => 'Tables settings',
-                'fieldsList' =>
-                    array(
-                        'entries_public' =>
-                            array(
-                                'id' => 'entries_public',
-                                'fieldsList' =>
-                                    array(
-                                        'fields' =>
-                                            array(
-                                                'id' => 'fields',
-                                                'title' => 'Fields',
-                                                'type' => 'select-fields',
-                                            ),
-                                    ),
-                            ),
-                        'entries_admin' =>
-                            array(
-                                'id' => 'entries_admin',
-                                'fieldsList' =>
-                                    array(
-                                        'fields' =>
-                                            array(
-                                                'id' => 'fields',
-                                                'title' => 'Fields',
-                                                'type' => 'select-fields',
-                                            ),
-                                    ),
-                            ),
-                        'submissions' =>
-                            array(
-                                'id' => 'submissions',
-                                'fieldsList' =>
-                                    array(
-                                        'fields' =>
-                                            array(
-                                                'id' => 'fields',
-                                                'title' => 'Fields',
-                                                'type' => 'select-fields',
-                                            ),
-                                    ),
-                            ),
-                        'checkins' =>
-                            array(
-                                'id' => 'checkins',
-                                'fieldsList' =>
-                                    array(
-                                        'fields' =>
-                                            array(
-                                                'id' => 'fields',
-                                                'title' => 'Fields',
-                                                'type' => 'select-fields',
-                                            ),
-                                    ),
-                            ),
-                        'presents' =>
-                            array(
-                                'id' => 'presents',
-                                'fieldsList' =>
-                                    array(
-                                        'fields' =>
-                                            array(
-                                                'id' => 'fields',
-                                                'title' => 'Fields',
-                                                'type' => 'select-fields',
-                                            ),
-                                    ),
-                            ),
-                    ),
-            ),
+        // 'repeater_fields' =>
+        //     array(
+        //         'id' => 'repeater_fields',
+        //         'title' => 'Repeater Fields',
+        //         'fieldsList' =>
+        //             array(
+        //                 'firstname' =>
+        //                     array(
+        //                         'id' => 'firstname',
+        //                         'title' => 'Firstname',
+        //                         'width' => 'half',
+        //                         'notDeletable' => true,
+        //                         'order' => 0,
+        //                     ),
+        //                 'lastname' =>
+        //                     array(
+        //                         'id' => 'lastname',
+        //                         'title' => 'Lastname',
+        //                         'width' => 'half',
+        //                         'notDeletable' => true,
+        //                         'order' => 1,
+        //                     ),
+        //                 'total_row' =>
+        //                     array(
+        //                         'id' => 'total_row',
+        //                         'title' => 'Row total',
+        //                         'type' => 'total_row',
+        //                         'width' => 'full',
+        //                         'notDeletable' => true,
+        //                         'order' => 1000,
+        //                     ),
+        //             ),
+        //     ),
+        // 'tables' =>
+        //     array(
+        //         'id' => 'tables',
+        //         'title' => 'Tables settings',
+        //         'fieldsList' =>
+        //             array(
+        //                 'entries_public' =>
+        //                     array(
+        //                         'id' => 'entries_public',
+        //                         'fieldsList' =>
+        //                             array(
+        //                                 'fields' =>
+        //                                     array(
+        //                                         'id' => 'fields',
+        //                                         'title' => 'Fields',
+        //                                         'type' => 'select-fields',
+        //                                     ),
+        //                             ),
+        //                     ),
+        //                 'entries_admin' =>
+        //                     array(
+        //                         'id' => 'entries_admin',
+        //                         'fieldsList' =>
+        //                             array(
+        //                                 'fields' =>
+        //                                     array(
+        //                                         'id' => 'fields',
+        //                                         'title' => 'Fields',
+        //                                         'type' => 'select-fields',
+        //                                     ),
+        //                             ),
+        //                     ),
+        //                 'submissions' =>
+        //                     array(
+        //                         'id' => 'submissions',
+        //                         'fieldsList' =>
+        //                             array(
+        //                                 'fields' =>
+        //                                     array(
+        //                                         'id' => 'fields',
+        //                                         'title' => 'Fields',
+        //                                         'type' => 'select-fields',
+        //                                     ),
+        //                             ),
+        //                     ),
+        //                 'checkins' =>
+        //                     array(
+        //                         'id' => 'checkins',
+        //                         'fieldsList' =>
+        //                             array(
+        //                                 'fields' =>
+        //                                     array(
+        //                                         'id' => 'fields',
+        //                                         'title' => 'Fields',
+        //                                         'type' => 'select-fields',
+        //                                     ),
+        //                             ),
+        //                     ),
+        //                 'presents' =>
+        //                     array(
+        //                         'id' => 'presents',
+        //                         'fieldsList' =>
+        //                             array(
+        //                                 'fields' =>
+        //                                     array(
+        //                                         'id' => 'fields',
+        //                                         'title' => 'Fields',
+        //                                         'type' => 'select-fields',
+        //                                     ),
+        //                             ),
+        //                     ),
+        //             ),
+        //     ),
     );
 
     public $full_data = [];
@@ -774,23 +774,23 @@ abstract class DefaultData implements InterfaceForm
                 <h6 class="black_text normal_case">' . __('Who is making the submission', 'btdev_inscriere_text') . '</h6>
             </div>';
 
-            if (isset($this->full_data['submission_fields'])) {
+            if (isset ($this->full_data['submission_fields'])) {
                 foreach ($this->full_data['submission_fields'] as $field_payment) {
-                    $field_html = new FieldForm($field_payment, isset($form_data[$field_payment['name']]) ? $form_data[$field_payment['name']] : null, $this);
+                    $field_html = new FieldForm($field_payment, isset ($form_data[$field_payment['name']]) ? $form_data[$field_payment['name']] : null, $this);
                     $html .= $field_html->create_html();
                 }
             }
 
-            if (isset($this->full_data['payment']) && isset($this->full_data['payment']['enabled']) && $this->full_data['payment']['enabled'] === true) {
-                if (isset($this->full_data['payment_fields'])) {
+            if (isset ($this->full_data['payment']) && isset ($this->full_data['payment']['enabled']) && $this->full_data['payment']['enabled'] === true) {
+                if (isset ($this->full_data['payment_fields'])) {
                     foreach ($this->full_data['payment_fields'] as $field_payment) {
-                        $field_html = new FieldForm($field_payment, isset($form_data[$field_payment['name']]) ? $form_data[$field_payment['name']] : null, $this);
+                        $field_html = new FieldForm($field_payment, isset ($form_data[$field_payment['name']]) ? $form_data[$field_payment['name']] : null, $this);
                         $html .= $field_html->create_html();
                     }
                 }
             }
 
-            if (isset($this->full_data['tandc']) && isset($this->full_data['tandc']['enabled']) && $this->full_data['tandc']['enabled'] === true) {
+            if (isset ($this->full_data['tandc']) && isset ($this->full_data['tandc']['enabled']) && $this->full_data['tandc']['enabled'] === true) {
                 $text = $this->full_data['tandc']['text'];
                 $html .= '<div class="form-group full_width tac_wrapper no_margin">
                     <input type="checkbox" name="agree_tac" id="agree_tac" value="true" checked />
@@ -818,7 +818,7 @@ abstract class DefaultData implements InterfaceForm
         $html = '<div class="repeater_wrapper">
             <div id="repeater_data">';
 
-        if (isset($form_data['entries'])) {
+        if (isset ($form_data['entries'])) {
             foreach ($form_data['entries'] as $index => $entry) {
                 $html .= $this->get_repeater_html($entry, $action, $index);
             }
@@ -844,9 +844,9 @@ abstract class DefaultData implements InterfaceForm
     {
         $html = '';
 
-        if (isset($this->full_data['payment']) && isset($this->full_data['payment']['enabled']) && $this->full_data['payment']['enabled'] === true) {
+        if (isset ($this->full_data['payment']) && isset ($this->full_data['payment']['enabled']) && $this->full_data['payment']['enabled'] === true) {
             $count = 1;
-            if (isset($form_data['entries'])) {
+            if (isset ($form_data['entries'])) {
                 $count = count($form_data['entries']);
             }
             $html .= '<div id="grand_total_wrapper" class="form-group submit_wrapper full_width">
@@ -870,7 +870,7 @@ abstract class DefaultData implements InterfaceForm
         $html = '';
 
         $name = __('Participant', 'btdev_inscriere_text');
-        if (isset($form_data['firstname']) || isset($form_data['lastname'])) {
+        if (isset ($form_data['firstname']) || isset ($form_data['lastname'])) {
             $new_name = [];
             if ($form_data['firstname'] !== '')
                 $new_name[] = $form_data['firstname'];
@@ -885,7 +885,7 @@ abstract class DefaultData implements InterfaceForm
                 <button class="form_remove_data"><span>' . __('Delete', 'btdev_inscriere_text') . '</span></button>
             </div>';
         foreach ($this->full_data['repeater_fields'] as $field) {
-            $field_html = new FieldForm($field, isset($form_data[$field['name']]) ? $form_data[$field['name']] : null, $this, $index);
+            $field_html = new FieldForm($field, isset ($form_data[$field['name']]) ? $form_data[$field['name']] : null, $this, $index);
             $html .= $field_html->create_html();
         }
         $html .= '</div>';
@@ -937,7 +937,7 @@ abstract class DefaultData implements InterfaceForm
             }
         }
 
-        if (!empty($return_data))
+        if (!empty ($return_data))
             return $return_data;
         else
             return false;
@@ -971,7 +971,7 @@ abstract class DefaultData implements InterfaceForm
             }
         }
 
-        if (!empty($return_data))
+        if (!empty ($return_data))
             return $return_data;
         else
             return false;
@@ -979,7 +979,7 @@ abstract class DefaultData implements InterfaceForm
 
     public function get_form_page_url($for)
     {
-        if (isset($this->full_data['links']) && isset($this->full_data['links'][$for])) {
+        if (isset ($this->full_data['links']) && isset ($this->full_data['links'][$for])) {
             return $this->full_data['links'][$for];
         } else {
             return false;

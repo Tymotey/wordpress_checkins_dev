@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import { FormFormsContext } from "../hooks/formFormsContext";
 
 function FormsInput(props) {
-    const { fieldSettings, fieldData, path } = props;
+    const { fieldSettings, fieldData, path, pathS } = props;
     const formFormsContext = useContext(FormFormsContext);
 
     const changeValue = (event) => {
@@ -16,8 +16,9 @@ function FormsInput(props) {
         </>
     );
 }
+
 function FormsSelect(props) {
-    const { fieldSettings, fieldData, path } = props;
+    const { fieldSettings, fieldData, path, pathS } = props;
     const formFormsContext = useContext(FormFormsContext);
 
     const changeValue = (event) => {
@@ -26,7 +27,11 @@ function FormsSelect(props) {
 
     return (
         <>
-            <select onChange={changeValue} defaultValue={fieldData}>
+            <select
+                onChange={changeValue}
+                defaultValue={fieldData}
+                multiple={fieldSettings.multiple || false}
+            >
                 {fieldSettings.options.length > 0 &&
                     fieldSettings.options.map((element, index) => {
                         return (
@@ -42,8 +47,9 @@ function FormsSelect(props) {
         </>
     );
 }
+
 function FormsTextarea(props) {
-    const { fieldSettings, fieldData, path } = props;
+    const { fieldSettings, fieldData, path, pathS } = props;
     const formFormsContext = useContext(FormFormsContext);
 
     const changeValue = (event) => {
@@ -57,4 +63,11 @@ function FormsTextarea(props) {
     );
 }
 
-export { FormsInput, FormsSelect, FormsTextarea };
+function FormsHtml(props) {
+    const { fieldSettings, fieldData, path, pathS } = props;
+    const formFormsContext = useContext(FormFormsContext);
+
+    return <>{fieldData}</>;
+}
+
+export { FormsInput, FormsSelect, FormsTextarea, FormsHtml };

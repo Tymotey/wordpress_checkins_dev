@@ -17,5 +17,8 @@
 	],
 	"devDependencies": {
 		"@wordpress/scripts": "^27.4.0"
+	},
+	"dependencies": {
+		"btdev_inscriere": "file:../../.."
 	}
 }

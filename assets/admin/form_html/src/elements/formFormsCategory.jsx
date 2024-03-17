@@ -8,13 +8,13 @@ function FormsCategory({ catIndex, catKey }) {
     const formFormsContext = useContext(FormFormsContext);
 
     // Close first category
-    const [opened, setOpened] = useState(catIndex === 2 ? true : false);
+    const [opened, setOpened] = useState(catIndex === 2 ? true : true);
     const toggleOpen = () => {
         setOpened(!opened);
     };
 
     // Category settings and values
-    let categoryValues = formFormsContext.getSettings(catKey);
+    let categoryValues = formFormsContext.getValue(catKey);
     let categorySettings = formFormsContext.getSettings(catKey);
 
     // Element classes
@@ -25,26 +25,37 @@ function FormsCategory({ catIndex, catKey }) {
     elClasses = elClasses.join(" ");
 
     if (categoryValues !== undefined && categorySettings !== undefined) {
-        console.log(categorySettings.fieldsList);
         return (
             <div key={catKey} className={elClasses}>
                 <div className="category-title" onClick={toggleOpen}>
                     {__(categorySettings.title, "btdev_inscriere_text")}
                 </div>
                 <div className="category-content">
-                    {categorySettings.isFieldOnly &&
-                        categorySettings.isFieldOnly === true && (
-                            <FormsCategoryField path={catKey} />
-                        )}
-                    {!categorySettings.isFieldOnly &&
+                    {categorySettings.fieldsList === undefined && (
+                        <FormsCategoryField path={catKey} pathS={catKey} />
+                    )}
+                    {categorySettings.fieldsList &&
                         Object.keys(categorySettings.fieldsList).length > 0 && (
-                            <FormsCategoryFieldsGroup path={catKey} />
+                            <FormsCategory
+                                showDescription={true}
+                                catKey={[catKey, "fieldsList"]}
+                            />
                         )}
                 </div>
             </div>
         );
     } else {
-        return <div>{__("No setting data found", "btdev_inscriere_text")}</div>;
+        return (
+            <div>
+                {__("No setting data found", "btdev_inscriere_text")}
+                <br />
+                {JSON.stringify(categoryValues)}
+                <br />
+                {JSON.stringify(categorySettings)}
+                <br />
+                {JSON.stringify(catKey)}
+            </div>
+        );
     }
 }
 
