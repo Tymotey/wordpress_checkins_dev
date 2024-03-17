@@ -31,14 +31,25 @@ function FormsCategory({ catIndex, catKey }) {
                     {__(categorySettings.title, "btdev_inscriere_text")}
                 </div>
                 <div className="category-content">
+                    {categorySettings.helpDescription &&
+                        categorySettings.helpDescription !== "" && (
+                            <h5 className="category-field-description">
+                                {categorySettings.helpDescription}
+                            </h5>
+                        )}
                     {categorySettings.fieldsList === undefined && (
-                        <FormsCategoryField path={catKey} pathS={catKey} />
+                        <FormsCategoryField
+                            path={catKey}
+                            pathS={catKey}
+                            showTitle={false}
+                            showDescription={false}
+                        />
                     )}
                     {categorySettings.fieldsList &&
                         Object.keys(categorySettings.fieldsList).length > 0 && (
-                            <FormsCategory
-                                showDescription={true}
-                                catKey={[catKey, "fieldsList"]}
+                            <FormsCategoryFieldsGroup
+                                path={[catKey]}
+                                pathS={[catKey, "fieldsList"]}
                             />
                         )}
                 </div>

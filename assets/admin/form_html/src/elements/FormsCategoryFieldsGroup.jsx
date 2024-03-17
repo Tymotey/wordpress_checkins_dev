@@ -48,46 +48,46 @@ function FormsCategoryFieldsGroup(props) {
                             />
                         );
                     }
-                    returnEl.push("-------------START---------");
-                    returnEl.push(JSON.stringify(element[1].fieldsList));
-                    returnEl.push("-------------END---------");
-                    if (element[1].fieldsList !== undefined) {
-                        Object.entries(element[1].fieldsList).map(
-                            (elementInner, indexInner) => {
-                                returnEl.push(indexInner);
-                                returnEl.push(<br />);
-                                returnEl.push(elementInner[0]);
-                                returnEl.push(<br />);
-                                returnEl.push(
-                                    JSON.stringify([
-                                        ...newPath,
-                                        elementInner[0],
-                                    ])
-                                );
-                                returnEl.push(<br />);
-                                returnEl.push(
-                                    JSON.stringify([
-                                        ...newPathS,
-                                        "fieldsList",
-                                        elementInner[0],
-                                    ])
-                                );
-                                returnEl.push(<br />);
-                                returnEl.push(
-                                    <FormsCategoryFieldsGroup
-                                        key={elementInner[0] + "-" + indexInner}
-                                        showDescription={false}
-                                        path={[...newPath, elementInner[0]]}
-                                        pathS={[
-                                            ...newPathS,
-                                            "fieldsList",
-                                            elementInner[0],
-                                        ]}
-                                    />
-                                );
-                            }
-                        );
-                    }
+                    // returnEl.push("-------------START---------");
+                    // returnEl.push(JSON.stringify(element[1].fieldsList));
+                    // returnEl.push("-------------END---------");
+                    // if (element[1].fieldsList !== undefined) {
+                    //     Object.entries(element[1].fieldsList).map(
+                    //         (elementInner, indexInner) => {
+                    //             returnEl.push(indexInner);
+                    //             returnEl.push(<br />);
+                    //             returnEl.push(elementInner[0]);
+                    //             returnEl.push(<br />);
+                    //             returnEl.push(
+                    //                 JSON.stringify([
+                    //                     ...newPath,
+                    //                     elementInner[0],
+                    //                 ])
+                    //             );
+                    //             returnEl.push(<br />);
+                    //             returnEl.push(
+                    //                 JSON.stringify([
+                    //                     ...newPathS,
+                    //                     "fieldsList",
+                    //                     elementInner[0],
+                    //                 ])
+                    //             );
+                    //             returnEl.push(<br />);
+                    //             returnEl.push(
+                    //                 <FormsCategoryFieldsGroup
+                    //                     key={elementInner[0] + "-" + indexInner}
+                    //                     showDescription={false}
+                    //                     path={[...newPath, elementInner[0]]}
+                    //                     pathS={[
+                    //                         ...newPathS,
+                    //                         "fieldsList",
+                    //                         elementInner[0],
+                    //                     ]}
+                    //                 />
+                    //             );
+                    //         }
+                    //     );
+                    // }
 
                     return returnEl;
                 })}

@@ -4,7 +4,7 @@ import { FormFormsContext } from "../hooks/formFormsContext";
 import { FormsInput, FormsSelect, FormsTextarea } from "./formFormsInputs";
 
 function FormsCategoryField(props) {
-    const { path, pathS } = props;
+    const { path, pathS, showTitle = true, showDescription = true } = props;
     const formFormsContext = useContext(FormFormsContext);
 
     // Get field data
@@ -66,8 +66,15 @@ function FormsCategoryField(props) {
                 <br />
                 PathS: {JSON.stringify(pathS)}
                 <br />
-                <h4 className="category-field-title">{fieldSettings.title}</h4>
-                {fieldSettings.helpDescription &&
+                Settings: {JSON.stringify(fieldSettings)}
+                <br />
+                {showTitle && (
+                    <h4 className="category-field-title">
+                        {fieldSettings.title}
+                    </h4>
+                )}
+                {showDescription &&
+                    fieldSettings.helpDescription &&
                     fieldSettings.helpDescription !== "" && (
                         <h5 className="category-field-description">
                             {fieldSettings.helpDescription}
