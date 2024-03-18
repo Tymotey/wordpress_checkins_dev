@@ -12,7 +12,12 @@ function FormsInput(props) {
 
     return (
         <>
-            <input onBlur={changeValue} defaultValue={fieldData} />
+            <input
+                onBlur={changeValue}
+                defaultValue={fieldData}
+                {...fieldSettings.htmlAttr}
+                style={{ ...fieldSettings.htmlCss }}
+            />
         </>
     );
 }
@@ -31,6 +36,8 @@ function FormsSelect(props) {
                 onChange={changeValue}
                 defaultValue={fieldData}
                 multiple={fieldSettings.multiple || false}
+                {...fieldSettings.htmlAttr}
+                style={{ ...fieldSettings.htmlCss }}
             >
                 {fieldSettings.options.length > 0 &&
                     fieldSettings.options.map((element, index) => {
@@ -58,7 +65,12 @@ function FormsTextarea(props) {
 
     return (
         <>
-            <textarea onBlur={changeValue} defaultValue={fieldData}></textarea>
+            <textarea
+                onBlur={changeValue}
+                defaultValue={fieldData}
+                {...fieldSettings.htmlAttr}
+                style={{ ...fieldSettings.htmlCss }}
+            ></textarea>
         </>
     );
 }
@@ -67,7 +79,11 @@ function FormsHtml(props) {
     const { fieldSettings, fieldData, path, pathS } = props;
     const formFormsContext = useContext(FormFormsContext);
 
-    return <>{fieldData}</>;
+    return (
+        <div {...fieldSettings.htmlAttr} style={{ ...fieldSettings.htmlCss }}>
+            {fieldData}
+        </div>
+    );
 }
 
 export { FormsInput, FormsSelect, FormsTextarea, FormsHtml };

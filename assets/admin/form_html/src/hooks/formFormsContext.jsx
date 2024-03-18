@@ -68,8 +68,14 @@ const FormFormsContextElement = (props) => {
     };
 
     const getValue = (path) => {
-        // console.log(values, path, "values, path IN CONTEXT");
-        return _.get(values, path);
+        console.log(
+            values,
+            path,
+            "values, path IN CONTEXT",
+            path ? path.join(".") : "",
+            _.get(values, path ? path.join(".") : "")
+        );
+        return _.get(values, path ? path.join(".") : "");
     };
 
     const setValuePath = (path, value) => {

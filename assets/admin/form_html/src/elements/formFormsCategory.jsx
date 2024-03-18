@@ -26,7 +26,7 @@ function FormsCategory({ catIndex, catKey }) {
 
     if (categoryValues !== undefined && categorySettings !== undefined) {
         return (
-            <div key={catKey} className={elClasses}>
+            <div key={catKey[0]} className={elClasses}>
                 <div className="category-title" onClick={toggleOpen}>
                     {__(categorySettings.title, "btdev_inscriere_text")}
                 </div>
@@ -39,8 +39,9 @@ function FormsCategory({ catIndex, catKey }) {
                         )}
                     {categorySettings.fieldsList === undefined && (
                         <FormsCategoryField
-                            path={catKey}
-                            pathS={catKey}
+                            key={catKey.join("-") + "-field"}
+                            path={[...catKey]}
+                            pathS={[...catKey]}
                             showTitle={false}
                             showDescription={false}
                         />
@@ -48,25 +49,16 @@ function FormsCategory({ catIndex, catKey }) {
                     {categorySettings.fieldsList &&
                         Object.keys(categorySettings.fieldsList).length > 0 && (
                             <FormsCategoryFieldsGroup
-                                path={[catKey]}
-                                pathS={[catKey, "fieldsList"]}
+                                key={catKey.join("-") + "-group"}
+                                path={[...catKey]}
+                                pathS={[...catKey]}
                             />
                         )}
                 </div>
             </div>
         );
     } else {
-        return (
-            <div>
-                {__("No setting data found", "btdev_inscriere_text")}
-                <br />
-                {JSON.stringify(categoryValues)}
-                <br />
-                {JSON.stringify(categorySettings)}
-                <br />
-                {JSON.stringify(catKey)}
-            </div>
-        );
+        return <div>{__("No setting data found", "btdev_inscriere_text")}</div>;
     }
 }
 

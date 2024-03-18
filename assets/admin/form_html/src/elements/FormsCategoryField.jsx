@@ -60,14 +60,14 @@ function FormsCategoryField(props) {
 
         return (
             <div className="category-field-container">
-                FIELD
+                {/* FIELD
                 <br />
                 Path: {JSON.stringify(path)}
                 <br />
                 PathS: {JSON.stringify(pathS)}
                 <br />
                 Settings: {JSON.stringify(fieldSettings)}
-                <br />
+                <br /> */}
                 {showTitle && (
                     <h4 className="category-field-title">
                         {fieldSettings.title}

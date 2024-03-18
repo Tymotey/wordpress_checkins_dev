@@ -24,6 +24,27 @@
             padding: 10px;
             width: 100%;
             display: none;
+
+            .category-field-container-inner {
+                padding-top: 5px;
+                padding-bottom: 5px;
+
+                .category-field-title-inner {
+                    font-weight: bold;
+                }
+
+                & > .category-field-container-inner {
+                    margin-left: 10px;
+                }
+
+                .category-field-content-inner {
+                    padding-left: 10px;
+                }
+
+                &.level-1 > .category-field-content-inner {
+                    padding-left: 0px;
+                }
+            }
         }
 
         &.opened {

@@ -33,7 +33,7 @@ export default function FormsForm() {
                     <FormsCategory
                         key={element[0]}
                         catIndex={index}
-                        catKey={element[0]}
+                        catKey={[element[0]]}
                     />
                 );
             })}

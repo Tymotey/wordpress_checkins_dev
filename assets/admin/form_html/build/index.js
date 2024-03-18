@@ -78,7 +78,7 @@ function FormsCategoryField(props) {
     }
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "category-field-container"
-    }, "FIELD", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), "Path: ", JSON.stringify(path), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), "PathS: ", JSON.stringify(pathS), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), "Settings: ", JSON.stringify(fieldSettings), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), showTitle && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", {
+    }, showTitle && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", {
       className: "category-field-title"
     }, fieldSettings.title), showDescription && fieldSettings.helpDescription && fieldSettings.helpDescription !== "" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h5", {
       className: "category-field-description"
@@ -120,88 +120,56 @@ function FormsCategoryFieldsGroup(props) {
   let {
     path,
     pathS,
-    showDescription
+    showDetails
   } = props;
-  console.log(props, "-------------props-------------");
   const formFormsContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_hooks_formFormsContext__WEBPACK_IMPORTED_MODULE_2__.FormFormsContext);
 
   // Get field data
-  let groupSettings = formFormsContext.getSettings(path);
+  let groupSettings = formFormsContext.getSettings(pathS);
   let groupData = formFormsContext.getValue(path);
-  console.log("-------------FIELD-------------");
-  console.log(path, "--path");
-  console.log(pathS, "--pathS");
-  console.log(showDescription, "--showDescription");
-  // console.log(fieldSettings, "--fieldSettings");
-  // console.log(fieldData, "--fieldData");
-  console.log("-------------FIELD-------------");
-  let groups = Object.entries(groupSettings.fieldsList || {});
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "category-fields-container"
-  }, groups.length > 0 && groups.map((element, index) => {
-    let newPath = [...path, element[0]];
-    let newPathS = [...pathS, element[0]];
-    let returnEl = [];
-    // console.log(
-    //     newPath,
-    //     newPathS,
-    //     "-------------newPaths-------------"
-    // );
-    // console.log(
-    //     element,
-    //     "-------------elementelementelement-------------"
-    // );
-    if (element[1].fieldsList === undefined) {
-      returnEl.push(element[0], "=======+++++++======");
-      returnEl.push((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_FormsCategoryField__WEBPACK_IMPORTED_MODULE_3__.FormsCategoryField, {
-        key: element[0] + "-" + index,
-        path: [...newPath],
-        pathS: [...newPathS]
-      }));
-    }
-    // returnEl.push("-------------START---------");
-    // returnEl.push(JSON.stringify(element[1].fieldsList));
-    // returnEl.push("-------------END---------");
-    // if (element[1].fieldsList !== undefined) {
-    //     Object.entries(element[1].fieldsList).map(
-    //         (elementInner, indexInner) => {
-    //             returnEl.push(indexInner);
-    //             returnEl.push(<br />);
-    //             returnEl.push(elementInner[0]);
-    //             returnEl.push(<br />);
-    //             returnEl.push(
-    //                 JSON.stringify([
-    //                     ...newPath,
-    //                     elementInner[0],
-    //                 ])
-    //             );
-    //             returnEl.push(<br />);
-    //             returnEl.push(
-    //                 JSON.stringify([
-    //                     ...newPathS,
-    //                     "fieldsList",
-    //                     elementInner[0],
-    //                 ])
-    //             );
-    //             returnEl.push(<br />);
-    //             returnEl.push(
-    //                 <FormsCategoryFieldsGroup
-    //                     key={elementInner[0] + "-" + indexInner}
-    //                     showDescription={false}
-    //                     path={[...newPath, elementInner[0]]}
-    //                     pathS={[
-    //                         ...newPathS,
-    //                         "fieldsList",
-    //                         elementInner[0],
-    //                     ]}
-    //                 />
-    //             );
-    //         }
-    //     );
-    // }
 
-    return returnEl;
-  }));
+  // returnEl.push(
+  //     <>
+  //         ------------INFOOOOOO--------------
+  //         <br />
+  //         <b>Path: </b>
+  //         {JSON.stringify(path)}
+  //         <br />
+  //         <b>PathS: </b>
+  //         {JSON.stringify(pathS)}
+  //         <br />
+  //         <b>groupSettings: </b>
+  //         {JSON.stringify(groupSettings)}
+  //         <br />
+  //         <b>groupSettings fieldsList: </b>
+  //         {JSON.stringify(groupSettings.fieldsList)}
+  //         <br />
+  //         ------------INFOOOOOO--------------
+  //         <br />
+  //         <br />
+  //     </>
+  // );
+  if (groupSettings.fieldsList === undefined) {
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_FormsCategoryField__WEBPACK_IMPORTED_MODULE_3__.FormsCategoryField, {
+      key: path.join("-") + "-field",
+      path: [...path],
+      pathS: [...pathS]
+    });
+  } else if (groupSettings.fieldsList !== undefined) {
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      key: path.join("-") + "container-inner-",
+      class: "category-field-container-inner level-" + path.length
+    }, path.length > 2 && groupSettings.title !== undefined && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", {
+      className: "category-field-title-inner"
+    }, groupSettings.title), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      class: "category-field-content-inner"
+    }, Object.entries(groupSettings.fieldsList).map((elementInner, indexInner) => {
+      return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(FormsCategoryFieldsGroup, {
+        path: [...path, elementInner[0]],
+        pathS: [...pathS, "fieldsList", elementInner[0]]
+      });
+    }))));
+  }
 }
 
 
@@ -254,7 +222,7 @@ function FormsCategory({
   elClasses = elClasses.join(" ");
   if (categoryValues !== undefined && categorySettings !== undefined) {
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      key: catKey,
+      key: catKey[0],
       className: elClasses
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "category-title",
@@ -264,16 +232,18 @@ function FormsCategory({
     }, categorySettings.helpDescription && categorySettings.helpDescription !== "" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h5", {
       className: "category-field-description"
     }, categorySettings.helpDescription), categorySettings.fieldsList === undefined && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_FormsCategoryField__WEBPACK_IMPORTED_MODULE_3__.FormsCategoryField, {
-      path: catKey,
-      pathS: catKey,
+      key: catKey.join("-") + "-field",
+      path: [...catKey],
+      pathS: [...catKey],
       showTitle: false,
       showDescription: false
     }), categorySettings.fieldsList && Object.keys(categorySettings.fieldsList).length > 0 && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_FormsCategoryFieldsGroup__WEBPACK_IMPORTED_MODULE_4__.FormsCategoryFieldsGroup, {
-      path: [catKey],
-      pathS: [catKey, "fieldsList"]
+      key: catKey.join("-") + "-group",
+      path: [...catKey],
+      pathS: [...catKey]
     })));
   } else {
-    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("No setting data found", "btdev_inscriere_text"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), JSON.stringify(categoryValues), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), JSON.stringify(categorySettings), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), JSON.stringify(catKey));
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("No setting data found", "btdev_inscriere_text"));
   }
 }
 
@@ -315,7 +285,11 @@ function FormsInput(props) {
   };
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
     onBlur: changeValue,
-    defaultValue: fieldData
+    defaultValue: fieldData,
+    ...fieldSettings.htmlAttr,
+    style: {
+      ...fieldSettings.htmlCss
+    }
   }));
 }
 function FormsSelect(props) {
@@ -332,7 +306,11 @@ function FormsSelect(props) {
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("select", {
     onChange: changeValue,
     defaultValue: fieldData,
-    multiple: fieldSettings.multiple || false
+    multiple: fieldSettings.multiple || false,
+    ...fieldSettings.htmlAttr,
+    style: {
+      ...fieldSettings.htmlCss
+    }
   }, fieldSettings.options.length > 0 && fieldSettings.options.map((element, index) => {
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
       key: "element-" + index,
@@ -353,7 +331,11 @@ function FormsTextarea(props) {
   };
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("textarea", {
     onBlur: changeValue,
-    defaultValue: fieldData
+    defaultValue: fieldData,
+    ...fieldSettings.htmlAttr,
+    style: {
+      ...fieldSettings.htmlCss
+    }
   }));
 }
 function FormsHtml(props) {
@@ -364,7 +346,12 @@ function FormsHtml(props) {
     pathS
   } = props;
   const formFormsContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_hooks_formFormsContext__WEBPACK_IMPORTED_MODULE_2__.FormFormsContext);
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, fieldData);
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    ...fieldSettings.htmlAttr,
+    style: {
+      ...fieldSettings.htmlCss
+    }
+  }, fieldData);
 }
 
 
@@ -407,7 +394,7 @@ function FormsForm() {
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_formFormsCategory__WEBPACK_IMPORTED_MODULE_2__.FormsCategory, {
       key: element[0],
       catIndex: index,
-      catKey: element[0]
+      catKey: [element[0]]
     });
   }));
 }
@@ -488,8 +475,8 @@ const FormFormsContextElement = props => {
     return settingData;
   };
   const getValue = path => {
-    // console.log(values, path, "values, path IN CONTEXT");
-    return lodash__WEBPACK_IMPORTED_MODULE_1___default().get(values, path);
+    console.log(values, path, "values, path IN CONTEXT", path ? path.join(".") : "", lodash__WEBPACK_IMPORTED_MODULE_1___default().get(values, path ? path.join(".") : ""));
+    return lodash__WEBPACK_IMPORTED_MODULE_1___default().get(values, path ? path.join(".") : "");
   };
   const setValuePath = (path, value) => {
     lodash__WEBPACK_IMPORTED_MODULE_1___default().set(values, path, value);

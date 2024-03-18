@@ -24,6 +24,22 @@
   width: 100%;
   display: none;
 }
+#btdev-inscriere-edit-form .category-container .category-content .category-field-container-inner {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+#btdev-inscriere-edit-form .category-container .category-content .category-field-container-inner .category-field-title-inner {
+  font-weight: bold;
+}
+#btdev-inscriere-edit-form .category-container .category-content .category-field-container-inner > .category-field-container-inner {
+  margin-left: 10px;
+}
+#btdev-inscriere-edit-form .category-container .category-content .category-field-container-inner .category-field-content-inner {
+  padding-left: 10px;
+}
+#btdev-inscriere-edit-form .category-container .category-content .category-field-container-inner.level-1 > .category-field-content-inner {
+  padding-left: 0px;
+}
 #btdev-inscriere-edit-form .category-container.opened .category-title {
   font-weight: bold;
   border-bottom: 1px solid #000000;

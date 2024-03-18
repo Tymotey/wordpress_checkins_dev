@@ -5,94 +5,76 @@ import { FormsCategoryField } from "./FormsCategoryField";
 import { FormsCategory } from "./formFormsCategory";
 
 function FormsCategoryFieldsGroup(props) {
-    let { path, pathS, showDescription } = props;
-    console.log(props, "-------------props-------------");
+    let { path, pathS, showDetails } = props;
     const formFormsContext = useContext(FormFormsContext);
 
     // Get field data
-    let groupSettings = formFormsContext.getSettings(path);
+    let groupSettings = formFormsContext.getSettings(pathS);
     let groupData = formFormsContext.getValue(path);
-    console.log("-------------FIELD-------------");
-    console.log(path, "--path");
-    console.log(pathS, "--pathS");
-    console.log(showDescription, "--showDescription");
-    // console.log(fieldSettings, "--fieldSettings");
-    // console.log(fieldData, "--fieldData");
-    console.log("-------------FIELD-------------");
-    let groups = Object.entries(groupSettings.fieldsList || {});
 
-    return (
-        <div className="category-fields-container">
-            {groups.length > 0 &&
-                groups.map((element, index) => {
-                    let newPath = [...path, element[0]];
-                    let newPathS = [...pathS, element[0]];
-
-                    let returnEl = [];
-                    // console.log(
-                    //     newPath,
-                    //     newPathS,
-                    //     "-------------newPaths-------------"
-                    // );
-                    // console.log(
-                    //     element,
-                    //     "-------------elementelementelement-------------"
-                    // );
-                    if (element[1].fieldsList === undefined) {
-                        returnEl.push(element[0], "=======+++++++======");
-                        returnEl.push(
-                            <FormsCategoryField
-                                key={element[0] + "-" + index}
-                                path={[...newPath]}
-                                pathS={[...newPathS]}
-                            />
-                        );
+    // returnEl.push(
+    //     <>
+    //         ------------INFOOOOOO--------------
+    //         <br />
+    //         <b>Path: </b>
+    //         {JSON.stringify(path)}
+    //         <br />
+    //         <b>PathS: </b>
+    //         {JSON.stringify(pathS)}
+    //         <br />
+    //         <b>groupSettings: </b>
+    //         {JSON.stringify(groupSettings)}
+    //         <br />
+    //         <b>groupSettings fieldsList: </b>
+    //         {JSON.stringify(groupSettings.fieldsList)}
+    //         <br />
+    //         ------------INFOOOOOO--------------
+    //         <br />
+    //         <br />
+    //     </>
+    // );
+    if (groupSettings.fieldsList === undefined) {
+        return (
+            <FormsCategoryField
+                key={path.join("-") + "-field"}
+                path={[...path]}
+                pathS={[...pathS]}
+            />
+        );
+    } else if (groupSettings.fieldsList !== undefined) {
+        return (
+            <>
+                <div
+                    key={path.join("-") + "container-inner-"}
+                    class={
+                        "category-field-container-inner level-" + path.length
                     }
-                    // returnEl.push("-------------START---------");
-                    // returnEl.push(JSON.stringify(element[1].fieldsList));
-                    // returnEl.push("-------------END---------");
-                    // if (element[1].fieldsList !== undefined) {
-                    //     Object.entries(element[1].fieldsList).map(
-                    //         (elementInner, indexInner) => {
-                    //             returnEl.push(indexInner);
-                    //             returnEl.push(<br />);
-                    //             returnEl.push(elementInner[0]);
-                    //             returnEl.push(<br />);
-                    //             returnEl.push(
-                    //                 JSON.stringify([
-                    //                     ...newPath,
-                    //                     elementInner[0],
-                    //                 ])
-                    //             );
-                    //             returnEl.push(<br />);
-                    //             returnEl.push(
-                    //                 JSON.stringify([
-                    //                     ...newPathS,
-                    //                     "fieldsList",
-                    //                     elementInner[0],
-                    //                 ])
-                    //             );
-                    //             returnEl.push(<br />);
-                    //             returnEl.push(
-                    //                 <FormsCategoryFieldsGroup
-                    //                     key={elementInner[0] + "-" + indexInner}
-                    //                     showDescription={false}
-                    //                     path={[...newPath, elementInner[0]]}
-                    //                     pathS={[
-                    //                         ...newPathS,
-                    //                         "fieldsList",
-                    //                         elementInner[0],
-                    //                     ]}
-                    //                 />
-                    //             );
-                    //         }
-                    //     );
-                    // }
-
-                    return returnEl;
-                })}
-        </div>
-    );
+                >
+                    {path.length > 2 && groupSettings.title !== undefined && (
+                        <h4 className="category-field-title-inner">
+                            {groupSettings.title}
+                        </h4>
+                    )}
+                    <div class="category-field-content-inner">
+                        {Object.entries(groupSettings.fieldsList).map(
+                            (elementInner, indexInner) => {
+                                return (
+                                    <FormsCategoryFieldsGroup
+                                        path={[...path, elementInner[0]]}
+                                        pathS={[
+                                            ...pathS,
+                                            "fieldsList",
+                                            elementInner[0],
+                                        ]}
+                                    />
+                                );
+                            }
+                        )}
+                    </div>
+                </div>
+            </>
+        );
+    }
 }
 
 export { FormsCategoryFieldsGroup };
