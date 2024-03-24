@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import { FormFormsContext } from "../hooks/formFormsContext";
 import { FormsInput, FormsSelect, FormsTextarea } from "./formFormsInputs";
 
-function FormsCategoryField(props) {
+function FormsCategoryFieldNormal(props) {
     const { path, pathS, showTitle = true, showDescription = true } = props;
     const formFormsContext = useContext(FormFormsContext);
 
@@ -17,6 +17,7 @@ function FormsCategoryField(props) {
     //     "-------------------SETTINGS-------------"
     // );
     let fieldData = formFormsContext.getValue(path);
+
     // console.log("-------------FIELD-------------");
     // console.log(path, "--path");
     // console.log(fieldSettings, "--fieldSettings");
@@ -25,11 +26,12 @@ function FormsCategoryField(props) {
 
     if (fieldSettings !== undefined) {
         let elType = fieldSettings.type ? fieldSettings.type : "input-text";
-        let elementHtml = <></>;
+        let elementHtml = [];
+
         switch (elType) {
             case "input-text":
             case "input-email":
-                elementHtml = (
+                elementHtml.push(
                     <FormsInput
                         fieldSettings={fieldSettings}
                         fieldData={fieldData}
@@ -37,8 +39,9 @@ function FormsCategoryField(props) {
                     />
                 );
                 break;
+            case "select-fields":
             case "select":
-                elementHtml = (
+                elementHtml.push(
                     <FormsSelect
                         fieldSettings={fieldSettings}
                         fieldData={fieldData}
@@ -48,7 +51,7 @@ function FormsCategoryField(props) {
                 break;
             case "wysiwyg":
             case "textarea":
-                elementHtml = (
+                elementHtml.push(
                     <FormsTextarea
                         fieldSettings={fieldSettings}
                         fieldData={fieldData}
@@ -60,14 +63,6 @@ function FormsCategoryField(props) {
 
         return (
             <div className="category-field-container">
-                {/* FIELD
-                <br />
-                Path: {JSON.stringify(path)}
-                <br />
-                PathS: {JSON.stringify(pathS)}
-                <br />
-                Settings: {JSON.stringify(fieldSettings)}
-                <br /> */}
                 {showTitle && (
                     <h4 className="category-field-title">
                         {fieldSettings.title}
@@ -92,4 +87,4 @@ function FormsCategoryField(props) {
     }
 }
 
-export { FormsCategoryField };
+export { FormsCategoryFieldNormal };

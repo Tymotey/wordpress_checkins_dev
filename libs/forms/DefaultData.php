@@ -387,27 +387,27 @@ abstract class DefaultData implements InterfaceForm
         ],
     ];
     public $default_structure = array(
-        // 'mode' =>
-        //     array(
-        //         'id' => 'mode',
-        //         'title' => 'Mode',
-        //         'type' => 'select',
-        //         'helpDescription' => 'Form mode',
-        //         'options' =>
-        //             array(
-        //                 0 =>
-        //                     array(
-        //                         'value' => 'test',
-        //                         'title' => 'Test',
-        //                         'default' => true,
-        //                     ),
-        //                 1 =>
-        //                     array(
-        //                         'value' => 'live',
-        //                         'title' => 'Live',
-        //                     ),
-        //             ),
-        //     ),
+        'mode' =>
+            array(
+                'id' => 'mode',
+                'title' => 'Mode',
+                'type' => 'select',
+                'helpDescription' => 'Form mode',
+                'options' =>
+                    array(
+                        0 =>
+                            array(
+                                'value' => 'test',
+                                'title' => 'Test',
+                                'default' => true,
+                            ),
+                        1 =>
+                            array(
+                                'value' => 'live',
+                                'title' => 'Live',
+                            ),
+                    ),
+            ),
         // 'table' =>
         //     array(
         //         'id' => 'table',
@@ -421,28 +421,28 @@ abstract class DefaultData implements InterfaceForm
         //         //     'width' => '100%'
         //         // ),
         //     ),
-        'tandc' =>
-            array(
-                'id' => 'tandc',
-                'title' => 'Terms and Conditions',
-                'fieldsList' =>
-                    array(
-                        'enabled' =>
-                            array(
-                                'id' => 'enabled',
-                                'title' => 'Enabled',
-                                'type' => 'select',
-                                'options' => 'funct|enabledOptions-true',
-                            ),
-                        'text' =>
-                            array(
-                                'id' => 'text',
-                                'title' => 'Text',
-                                'type' => 'wysiwyg',
-                                'default' => 'I agree that my data will be used to better organize this and future events.',
-                            ),
-                    ),
-            ),
+        // 'tandc' =>
+        //     array(
+        //         'id' => 'tandc',
+        //         'title' => 'Terms and Conditions',
+        //         'fieldsList' =>
+        //             array(
+        //                 'enabled' =>
+        //                     array(
+        //                         'id' => 'enabled',
+        //                         'title' => 'Enabled',
+        //                         'type' => 'select',
+        //                         'options' => 'funct|enabledOptions-true',
+        //                     ),
+        //                 'text' =>
+        //                     array(
+        //                         'id' => 'text',
+        //                         'title' => 'Text',
+        //                         'type' => 'wysiwyg',
+        //                         'default' => 'I agree that my data will be used to better organize this and future events.',
+        //                     ),
+        //             ),
+        //     ),
         // 'captcha' =>
         //     array(
         //         'id' => 'captcha',
@@ -529,170 +529,177 @@ abstract class DefaultData implements InterfaceForm
         //                     ),
         //             ),
         //     ),
-        'emails' =>
-            array(
-                'id' => 'emails',
-                'title' => 'Emails',
-                'helpDescription' => 'Emails settings',
-                'fieldsList' =>
-                    array(
-                        'description' =>
-                            array(
-                                'id' => 'description',
-                                'title' => 'Post subject text',
-                                'helpDescription' => 'Text to add after email subject',
-                            ),
-                        'list' =>
-                            array(
-                                'id' => 'list',
-                                'title' => 'Emails List',
-                                'fieldsList' =>
-                                    array(
-                                        'saved' =>
-                                            array(
-                                                'id' => 'saved',
-                                                'title' => 'Submission saved',
-                                                'fieldsList' =>
-                                                    array(
-                                                        'enabled' =>
-                                                            array(
-                                                                'id' => 'enabled',
-                                                                'title' => 'Enabled',
-                                                                'type' => 'select',
-                                                                'options' => 'funct|enabledOptions-true',
-                                                            ),
-                                                        'subject' =>
-                                                            array(
-                                                                'id' => 'subject',
-                                                                'title' => 'Subject',
-                                                                'default' => 'Submission saved',
-                                                            ),
-                                                        'content' =>
-                                                            array(
-                                                                'id' => 'content',
-                                                                'title' => 'Content',
-                                                                'type' => 'wysiwyg',
-                                                            ),
-                                                    ),
-                                            ),
-                                        'done' =>
-                                            array(
-                                                'id' => 'done',
-                                                'title' => 'Submission added',
-                                                'fieldsList' =>
-                                                    array(
-                                                        'enabled' =>
-                                                            array(
-                                                                'id' => 'enabled',
-                                                                'title' => 'Enabled',
-                                                                'type' => 'select',
-                                                                'options' => 'funct|enabledOptions-true',
-                                                            ),
-                                                        'subject' =>
-                                                            array(
-                                                                'id' => 'subject',
-                                                                'title' => 'Subject',
-                                                                'default' => 'Submission succesfully added!',
-                                                            ),
-                                                        'content' =>
-                                                            array(
-                                                                'id' => 'content',
-                                                                'title' => 'Content',
-                                                                'type' => 'wysiwyg',
-                                                            ),
-                                                    ),
-                                            ),
-                                        'not_done' =>
-                                            array(
-                                                'id' => 'not_done',
-                                                'title' => 'Submission canceled',
-                                                'fieldsList' =>
-                                                    array(
-                                                        'enabled' =>
-                                                            array(
-                                                                'id' => 'enabled',
-                                                                'title' => 'Enabled',
-                                                                'type' => 'select',
-                                                                'options' => 'funct|enabledOptions-true',
-                                                            ),
-                                                        'subject' =>
-                                                            array(
-                                                                'id' => 'subject',
-                                                                'title' => 'Subject',
-                                                                'default' => 'Submission canceled!',
-                                                            ),
-                                                        'content' =>
-                                                            array(
-                                                                'id' => 'content',
-                                                                'title' => 'Content',
-                                                                'type' => 'wysiwyg',
-                                                            ),
-                                                    ),
-                                            ),
-                                        'edit' =>
-                                            array(
-                                                'id' => 'edit',
-                                                'title' => 'Submission edited',
-                                                'fieldsList' =>
-                                                    array(
-                                                        'enabled' =>
-                                                            array(
-                                                                'id' => 'enabled',
-                                                                'title' => 'Enabled',
-                                                                'type' => 'select',
-                                                                'options' => 'funct|enabledOptions-true',
-                                                            ),
-                                                        'subject' =>
-                                                            array(
-                                                                'id' => 'subject',
-                                                                'title' => 'Subject',
-                                                                'default' => 'Submission edited!',
-                                                            ),
-                                                        'content' =>
-                                                            array(
-                                                                'id' => 'content',
-                                                                'title' => 'Content',
-                                                                'type' => 'wysiwyg',
-                                                            ),
-                                                    ),
-                                            ),
-                                    ),
-                            ),
-                    ),
-            ),
-        // 'repeater_fields' =>
+        // 'emails' =>
         //     array(
-        //         'id' => 'repeater_fields',
-        //         'title' => 'Repeater Fields',
+        //         'id' => 'emails',
+        //         'title' => 'Emails',
+        //         'helpDescription' => 'Emails settings',
         //         'fieldsList' =>
         //             array(
-        //                 'firstname' =>
+        //                 'description' =>
         //                     array(
-        //                         'id' => 'firstname',
-        //                         'title' => 'Firstname',
-        //                         'width' => 'half',
-        //                         'notDeletable' => true,
-        //                         'order' => 0,
+        //                         'id' => 'description',
+        //                         'title' => 'Post subject text',
+        //                         'helpDescription' => 'Text to add after email subject',
         //                     ),
-        //                 'lastname' =>
+        //                 'list' =>
         //                     array(
-        //                         'id' => 'lastname',
-        //                         'title' => 'Lastname',
-        //                         'width' => 'half',
-        //                         'notDeletable' => true,
-        //                         'order' => 1,
-        //                     ),
-        //                 'total_row' =>
-        //                     array(
-        //                         'id' => 'total_row',
-        //                         'title' => 'Row total',
-        //                         'type' => 'total_row',
-        //                         'width' => 'full',
-        //                         'notDeletable' => true,
-        //                         'order' => 1000,
+        //                         'id' => 'list',
+        //                         'title' => 'Emails List',
+        //                         'fieldsList' =>
+        //                             array(
+        //                                 'saved' =>
+        //                                     array(
+        //                                         'id' => 'saved',
+        //                                         'title' => 'Submission saved',
+        //                                         'fieldsList' =>
+        //                                             array(
+        //                                                 'enabled' =>
+        //                                                     array(
+        //                                                         'id' => 'enabled',
+        //                                                         'title' => 'Enabled',
+        //                                                         'type' => 'select',
+        //                                                         'options' => 'funct|enabledOptions-true',
+        //                                                     ),
+        //                                                 'subject' =>
+        //                                                     array(
+        //                                                         'id' => 'subject',
+        //                                                         'title' => 'Subject',
+        //                                                         'default' => 'Submission saved',
+        //                                                     ),
+        //                                                 'content' =>
+        //                                                     array(
+        //                                                         'id' => 'content',
+        //                                                         'title' => 'Content',
+        //                                                         'type' => 'wysiwyg',
+        //                                                     ),
+        //                                             ),
+        //                                     ),
+        //                                 'done' =>
+        //                                     array(
+        //                                         'id' => 'done',
+        //                                         'title' => 'Submission added',
+        //                                         'fieldsList' =>
+        //                                             array(
+        //                                                 'enabled' =>
+        //                                                     array(
+        //                                                         'id' => 'enabled',
+        //                                                         'title' => 'Enabled',
+        //                                                         'type' => 'select',
+        //                                                         'options' => 'funct|enabledOptions-true',
+        //                                                     ),
+        //                                                 'subject' =>
+        //                                                     array(
+        //                                                         'id' => 'subject',
+        //                                                         'title' => 'Subject',
+        //                                                         'default' => 'Submission succesfully added!',
+        //                                                     ),
+        //                                                 'content' =>
+        //                                                     array(
+        //                                                         'id' => 'content',
+        //                                                         'title' => 'Content',
+        //                                                         'type' => 'wysiwyg',
+        //                                                     ),
+        //                                             ),
+        //                                     ),
+        //                                 'not_done' =>
+        //                                     array(
+        //                                         'id' => 'not_done',
+        //                                         'title' => 'Submission canceled',
+        //                                         'fieldsList' =>
+        //                                             array(
+        //                                                 'enabled' =>
+        //                                                     array(
+        //                                                         'id' => 'enabled',
+        //                                                         'title' => 'Enabled',
+        //                                                         'type' => 'select',
+        //                                                         'options' => 'funct|enabledOptions-true',
+        //                                                     ),
+        //                                                 'subject' =>
+        //                                                     array(
+        //                                                         'id' => 'subject',
+        //                                                         'title' => 'Subject',
+        //                                                         'default' => 'Submission canceled!',
+        //                                                     ),
+        //                                                 'content' =>
+        //                                                     array(
+        //                                                         'id' => 'content',
+        //                                                         'title' => 'Content',
+        //                                                         'type' => 'wysiwyg',
+        //                                                     ),
+        //                                             ),
+        //                                     ),
+        //                                 'edit' =>
+        //                                     array(
+        //                                         'id' => 'edit',
+        //                                         'title' => 'Submission edited',
+        //                                         'fieldsList' =>
+        //                                             array(
+        //                                                 'enabled' =>
+        //                                                     array(
+        //                                                         'id' => 'enabled',
+        //                                                         'title' => 'Enabled',
+        //                                                         'type' => 'select',
+        //                                                         'options' => 'funct|enabledOptions-true',
+        //                                                     ),
+        //                                                 'subject' =>
+        //                                                     array(
+        //                                                         'id' => 'subject',
+        //                                                         'title' => 'Subject',
+        //                                                         'default' => 'Submission edited!',
+        //                                                     ),
+        //                                                 'content' =>
+        //                                                     array(
+        //                                                         'id' => 'content',
+        //                                                         'title' => 'Content',
+        //                                                         'type' => 'wysiwyg',
+        //                                                     ),
+        //                                             ),
+        //                                     ),
+        //                             ),
         //                     ),
         //             ),
         //     ),
+        'repeater_fields' =>
+            array(
+                'id' => 'repeater_fields',
+                'title' => 'Repeater Fields',
+                'fieldsList' =>
+                    array(
+                        'firstname' =>
+                            array(
+                                'id' => 'firstname',
+                                'title' => 'Firstname',
+                                'width' => 'half',
+                                'notDeletable' => true,
+                                'order' => 0,
+                            ),
+                        'lastname' =>
+                            array(
+                                'id' => 'lastname',
+                                'title' => 'Lastname',
+                                'width' => 'half',
+                                'notDeletable' => true,
+                                'order' => 1,
+                            ),
+                        'lastname1' =>
+                            array(
+                                'id' => 'lastname1',
+                                'title' => 'Lastname1',
+                                'width' => 'half',
+                                'order' => 1,
+                            ),
+                        'total_row' =>
+                            array(
+                                'id' => 'total_row',
+                                'title' => 'Row total',
+                                'type' => 'total_row',
+                                'width' => 'full',
+                                'notDeletable' => true,
+                                'order' => 1000,
+                            ),
+                    ),
+            ),
         // 'tables' =>
         //     array(
         //         'id' => 'tables',

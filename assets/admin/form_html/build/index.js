@@ -2,15 +2,15 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/elements/FormsCategoryField.jsx":
-/*!*********************************************!*\
-  !*** ./src/elements/FormsCategoryField.jsx ***!
-  \*********************************************/
+/***/ "./src/elements/FormsCategoryFieldNormal.jsx":
+/*!***************************************************!*\
+  !*** ./src/elements/FormsCategoryFieldNormal.jsx ***!
+  \***************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   FormsCategoryField: () => (/* binding */ FormsCategoryField)
+/* harmony export */   FormsCategoryFieldNormal: () => (/* binding */ FormsCategoryFieldNormal)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
@@ -23,7 +23,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function FormsCategoryField(props) {
+function FormsCategoryFieldNormal(props) {
   const {
     path,
     pathS,
@@ -42,6 +42,7 @@ function FormsCategoryField(props) {
   //     "-------------------SETTINGS-------------"
   // );
   let fieldData = formFormsContext.getValue(path);
+
   // console.log("-------------FIELD-------------");
   // console.log(path, "--path");
   // console.log(fieldSettings, "--fieldSettings");
@@ -50,32 +51,105 @@ function FormsCategoryField(props) {
 
   if (fieldSettings !== undefined) {
     let elType = fieldSettings.type ? fieldSettings.type : "input-text";
-    let elementHtml = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null);
+    let elementHtml = [];
     switch (elType) {
       case "input-text":
       case "input-email":
-        elementHtml = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_formFormsInputs__WEBPACK_IMPORTED_MODULE_3__.FormsInput, {
+        elementHtml.push((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_formFormsInputs__WEBPACK_IMPORTED_MODULE_3__.FormsInput, {
           fieldSettings: fieldSettings,
           fieldData: fieldData,
           path: path
-        });
+        }));
         break;
+      case "select-fields":
       case "select":
-        elementHtml = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_formFormsInputs__WEBPACK_IMPORTED_MODULE_3__.FormsSelect, {
+        elementHtml.push((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_formFormsInputs__WEBPACK_IMPORTED_MODULE_3__.FormsSelect, {
           fieldSettings: fieldSettings,
           fieldData: fieldData,
           path: path
-        });
+        }));
         break;
       case "wysiwyg":
       case "textarea":
-        elementHtml = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_formFormsInputs__WEBPACK_IMPORTED_MODULE_3__.FormsTextarea, {
+        elementHtml.push((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_formFormsInputs__WEBPACK_IMPORTED_MODULE_3__.FormsTextarea, {
           fieldSettings: fieldSettings,
           fieldData: fieldData,
           path: path
-        });
+        }));
         break;
     }
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "category-field-container"
+    }, showTitle && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", {
+      className: "category-field-title"
+    }, fieldSettings.title), showDescription && fieldSettings.helpDescription && fieldSettings.helpDescription !== "" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h5", {
+      className: "category-field-description"
+    }, fieldSettings.helpDescription), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "category-field-wrapper"
+    }, elementHtml));
+  } else {
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, "No field settings found for \"", JSON.stringify(path), "\"", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null));
+  }
+}
+
+
+/***/ }),
+
+/***/ "./src/elements/FormsCategoryFieldRepeater.jsx":
+/*!*****************************************************!*\
+  !*** ./src/elements/FormsCategoryFieldRepeater.jsx ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   FormsCategoryFieldRepeater: () => (/* binding */ FormsCategoryFieldRepeater)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _hooks_formFormsContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../hooks/formFormsContext */ "./src/hooks/formFormsContext.jsx");
+/* harmony import */ var _formFormsInputRepeater__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./formFormsInputRepeater */ "./src/elements/formFormsInputRepeater.jsx");
+
+
+
+
+
+function FormsCategoryFieldRepeater(props) {
+  const {
+    path,
+    pathS,
+    showTitle = true,
+    showDescription = true
+  } = props;
+  const formFormsContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_hooks_formFormsContext__WEBPACK_IMPORTED_MODULE_2__.FormFormsContext);
+
+  // Get field data
+  // console.log("pathS: ", pathS);
+  // console.log("path: ", path);
+  let fieldSettings = formFormsContext.getSettings(pathS);
+  // console.log(
+  //     "fieldSettings",
+  //     fieldSettings,
+  //     "-------------------SETTINGS-------------"
+  // );
+  let fieldData = formFormsContext.getValue(path);
+
+  // console.log("-------------FIELD-------------");
+  // console.log(path, "--path");
+  // console.log(fieldSettings, "--fieldSettings");
+  // console.log(fieldData, "--fieldData");
+  // console.log("-------------FIELD-------------");
+
+  if (fieldSettings !== undefined) {
+    let elType = fieldSettings.type ? fieldSettings.type : "input-text";
+    let elementHtml = [];
+    elementHtml.push((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_formFormsInputRepeater__WEBPACK_IMPORTED_MODULE_3__.FormsInputRepeater, {
+      fieldSettings: fieldSettings,
+      fieldData: fieldData,
+      path: path
+    }));
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "category-field-container"
     }, showTitle && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", {
@@ -107,9 +181,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _hooks_formFormsContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../hooks/formFormsContext */ "./src/hooks/formFormsContext.jsx");
-/* harmony import */ var _FormsCategoryField__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./FormsCategoryField */ "./src/elements/FormsCategoryField.jsx");
-/* harmony import */ var _formFormsCategory__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./formFormsCategory */ "./src/elements/formFormsCategory.jsx");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash */ "lodash");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _hooks_formFormsContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../hooks/formFormsContext */ "./src/hooks/formFormsContext.jsx");
+/* harmony import */ var _FormsCategoryFieldNormal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./FormsCategoryFieldNormal */ "./src/elements/FormsCategoryFieldNormal.jsx");
+/* harmony import */ var _FormsCategoryFieldRepeater__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./FormsCategoryFieldRepeater */ "./src/elements/FormsCategoryFieldRepeater.jsx");
+
 
 
 
@@ -120,9 +197,10 @@ function FormsCategoryFieldsGroup(props) {
   let {
     path,
     pathS,
-    showDetails
+    showDetails,
+    isRepeater
   } = props;
-  const formFormsContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_hooks_formFormsContext__WEBPACK_IMPORTED_MODULE_2__.FormFormsContext);
+  const formFormsContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_hooks_formFormsContext__WEBPACK_IMPORTED_MODULE_3__.FormFormsContext);
 
   // Get field data
   let groupSettings = formFormsContext.getSettings(pathS);
@@ -150,23 +228,34 @@ function FormsCategoryFieldsGroup(props) {
   //     </>
   // );
   if (groupSettings.fieldsList === undefined) {
-    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_FormsCategoryField__WEBPACK_IMPORTED_MODULE_3__.FormsCategoryField, {
-      key: path.join("-") + "-field",
-      path: [...path],
-      pathS: [...pathS]
-    });
+    if (!isRepeater) {
+      return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_FormsCategoryFieldNormal__WEBPACK_IMPORTED_MODULE_4__.FormsCategoryFieldNormal, {
+        key: path.join("-") + "-field",
+        path: [...path],
+        pathS: [...pathS]
+      });
+    } else {
+      return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_FormsCategoryFieldRepeater__WEBPACK_IMPORTED_MODULE_5__.FormsCategoryFieldRepeater, {
+        key: path.join("-") + "-field",
+        path: [...path],
+        pathS: [...pathS]
+      });
+    }
   } else if (groupSettings.fieldsList !== undefined) {
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      key: path.join("-") + "container-inner-",
-      class: "category-field-container-inner level-" + path.length
+      key: path.join("-") + "-container-outter",
+      className: "category-field-container-inner level-" + path.length
     }, path.length > 2 && groupSettings.title !== undefined && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", {
       className: "category-field-title-inner"
     }, groupSettings.title), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      class: "category-field-content-inner"
+      className: "category-field-content-inner"
     }, Object.entries(groupSettings.fieldsList).map((elementInner, indexInner) => {
+      let newPath = [...path, elementInner[0]];
       return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(FormsCategoryFieldsGroup, {
-        path: [...path, elementInner[0]],
-        pathS: [...pathS, "fieldsList", elementInner[0]]
+        key: newPath.join("-") + "-container-inner",
+        path: newPath,
+        pathS: [...pathS, "fieldsList", elementInner[0]],
+        isRepeater: isRepeater
       });
     }))));
   }
@@ -190,8 +279,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _hooks_formFormsContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../hooks/formFormsContext */ "./src/hooks/formFormsContext.jsx");
-/* harmony import */ var _FormsCategoryField__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./FormsCategoryField */ "./src/elements/FormsCategoryField.jsx");
-/* harmony import */ var _FormsCategoryFieldsGroup__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./FormsCategoryFieldsGroup */ "./src/elements/FormsCategoryFieldsGroup.jsx");
+/* harmony import */ var _FormsCategoryFieldNormal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./FormsCategoryFieldNormal */ "./src/elements/FormsCategoryFieldNormal.jsx");
+/* harmony import */ var _FormsCategoryFieldRepeater__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./FormsCategoryFieldRepeater */ "./src/elements/FormsCategoryFieldRepeater.jsx");
+/* harmony import */ var _FormsCategoryFieldsGroup__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./FormsCategoryFieldsGroup */ "./src/elements/FormsCategoryFieldsGroup.jsx");
+
 
 
 
@@ -203,6 +294,7 @@ function FormsCategory({
   catKey
 }) {
   const formFormsContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_hooks_formFormsContext__WEBPACK_IMPORTED_MODULE_2__.FormFormsContext);
+  let isRepeater = catKey[0] === "repeater_fields" ? true : false;
 
   // Close first category
   const [opened, setOpened] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(catIndex === 2 ? true : true);
@@ -227,24 +319,80 @@ function FormsCategory({
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "category-title",
       onClick: toggleOpen
-    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)(categorySettings.title, "btdev_inscriere_text")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)(categorySettings.title, "btdev_inscriere_text"), isRepeater == true && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "repeater_add_field"
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+      class: "dashicons dashicons-insert"
+    }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "category-content"
     }, categorySettings.helpDescription && categorySettings.helpDescription !== "" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h5", {
       className: "category-field-description"
-    }, categorySettings.helpDescription), categorySettings.fieldsList === undefined && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_FormsCategoryField__WEBPACK_IMPORTED_MODULE_3__.FormsCategoryField, {
+    }, categorySettings.helpDescription), categorySettings.fieldsList === undefined && !isRepeater && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_FormsCategoryFieldNormal__WEBPACK_IMPORTED_MODULE_3__.FormsCategoryFieldNormal, {
       key: catKey.join("-") + "-field",
       path: [...catKey],
       pathS: [...catKey],
       showTitle: false,
       showDescription: false
-    }), categorySettings.fieldsList && Object.keys(categorySettings.fieldsList).length > 0 && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_FormsCategoryFieldsGroup__WEBPACK_IMPORTED_MODULE_4__.FormsCategoryFieldsGroup, {
+    }), categorySettings.fieldsList && Object.keys(categorySettings.fieldsList).length > 0 && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_FormsCategoryFieldsGroup__WEBPACK_IMPORTED_MODULE_5__.FormsCategoryFieldsGroup, {
       key: catKey.join("-") + "-group",
       path: [...catKey],
-      pathS: [...catKey]
+      pathS: [...catKey],
+      isRepeater: isRepeater
     })));
   } else {
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("No setting data found", "btdev_inscriere_text"));
   }
+}
+
+
+/***/ }),
+
+/***/ "./src/elements/formFormsInputRepeater.jsx":
+/*!*************************************************!*\
+  !*** ./src/elements/formFormsInputRepeater.jsx ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   FormsInputRepeater: () => (/* binding */ FormsInputRepeater)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _hooks_formFormsContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../hooks/formFormsContext */ "./src/hooks/formFormsContext.jsx");
+
+
+
+
+function FormsInputRepeater(props) {
+  const {
+    fieldSettings,
+    fieldData,
+    path,
+    pathS
+  } = props;
+  const formFormsContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_hooks_formFormsContext__WEBPACK_IMPORTED_MODULE_2__.FormFormsContext);
+  const changeValue = event => {
+    formFormsContext.setValuePath(path, event.target.value);
+  };
+  const removeField = path => {
+    console.log(path);
+  };
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: ["repeater_control", fieldSettings.notDeletable ? "not_deletetable" : undefined].join(" "),
+    onClick: fieldSettings.notDeletable && fieldSettings.notDeletable === true ? () => {} : removeField(path)
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    class: "dashicons dashicons-remove"
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+    onBlur: changeValue,
+    defaultValue: fieldData,
+    ...fieldSettings.htmlAttr,
+    style: {
+      ...fieldSettings.htmlCss
+    }
+  }));
 }
 
 

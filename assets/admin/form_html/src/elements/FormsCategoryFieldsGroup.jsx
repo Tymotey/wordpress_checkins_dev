@@ -1,11 +1,12 @@
 import { __ } from "@wordpress/i18n";
+import {} from "lodash";
 import { useContext, useState } from "react";
 import { FormFormsContext } from "../hooks/formFormsContext";
-import { FormsCategoryField } from "./FormsCategoryField";
-import { FormsCategory } from "./formFormsCategory";
+import { FormsCategoryFieldNormal } from "./FormsCategoryFieldNormal";
+import { FormsCategoryFieldRepeater } from "./FormsCategoryFieldRepeater";
 
 function FormsCategoryFieldsGroup(props) {
-    let { path, pathS, showDetails } = props;
+    let { path, pathS, showDetails, isRepeater } = props;
     const formFormsContext = useContext(FormFormsContext);
 
     // Get field data
@@ -34,19 +35,29 @@ function FormsCategoryFieldsGroup(props) {
     //     </>
     // );
     if (groupSettings.fieldsList === undefined) {
-        return (
-            <FormsCategoryField
-                key={path.join("-") + "-field"}
-                path={[...path]}
-                pathS={[...pathS]}
-            />
-        );
+        if (!isRepeater) {
+            return (
+                <FormsCategoryFieldNormal
+                    key={path.join("-") + "-field"}
+                    path={[...path]}
+                    pathS={[...pathS]}
+                />
+            );
+        } else {
+            return (
+                <FormsCategoryFieldRepeater
+                    key={path.join("-") + "-field"}
+                    path={[...path]}
+                    pathS={[...pathS]}
+                />
+            );
+        }
     } else if (groupSettings.fieldsList !== undefined) {
         return (
             <>
                 <div
-                    key={path.join("-") + "container-inner-"}
-                    class={
+                    key={path.join("-") + "-container-outter"}
+                    className={
                         "category-field-container-inner level-" + path.length
                     }
                 >
@@ -55,17 +66,24 @@ function FormsCategoryFieldsGroup(props) {
                             {groupSettings.title}
                         </h4>
                     )}
-                    <div class="category-field-content-inner">
+                    <div className="category-field-content-inner">
                         {Object.entries(groupSettings.fieldsList).map(
                             (elementInner, indexInner) => {
+                                let newPath = [...path, elementInner[0]];
+
                                 return (
                                     <FormsCategoryFieldsGroup
-                                        path={[...path, elementInner[0]]}
+                                        key={
+                                            newPath.join("-") +
+                                            "-container-inner"
+                                        }
+                                        path={newPath}
                                         pathS={[
                                             ...pathS,
                                             "fieldsList",
                                             elementInner[0],
                                         ]}
+                                        isRepeater={isRepeater}
                                     />
                                 );
                             }
