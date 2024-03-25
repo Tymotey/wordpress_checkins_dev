@@ -25,15 +25,6 @@
             width: 100%;
             display: none;
 
-            .repeater_control {
-                cursor: pointer;
-
-                &.not_deletetable {
-                    cursor: default;
-                    opacity: 0.5;
-                }
-            }
-
             .category-field-title-inner {
                 margin: 1;
             }
@@ -54,6 +45,39 @@
                 .category-field-content-inner {
                     padding-left: 10px;
                     padding-right: 10px;
+
+                    .category-field-container {
+                        &.repeater-field {
+                            position: relative;
+                            padding: 15px;
+
+                            .category-field-title {
+                                margin-left: 60px;
+                            }
+
+                            .repeater_control {
+                                position: absolute;
+                                cursor: pointer;
+                                margin-top: -25px;
+                                margin-left: 30px;
+
+                                &.not_deletetable {
+                                    cursor: default;
+                                    opacity: 0.5;
+                                }
+                            }
+
+                            .repeater_move {
+                                position: absolute;
+                                cursor: n-resize;
+                                margin-top: -25px;
+                            }
+                        }
+
+                        &:first-child {
+                            padding-top: 0px;
+                        }
+                    }
                 }
 
                 &.level-1 > .category-field-content-inner {

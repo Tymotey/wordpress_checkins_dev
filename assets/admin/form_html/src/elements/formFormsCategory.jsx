@@ -33,7 +33,7 @@ function FormsCategory({ catIndex, catKey }) {
                     {__(categorySettings.title, "btdev_inscriere_text")}
                     {isRepeater == true && (
                         <div className="repeater_add_field">
-                            <span class="dashicons dashicons-insert"></span>
+                            <span className="dashicons dashicons-insert"></span>
                         </div>
                     )}
                 </div>

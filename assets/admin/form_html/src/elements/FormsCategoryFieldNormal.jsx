@@ -7,22 +7,8 @@ function FormsCategoryFieldNormal(props) {
     const { path, pathS, showTitle = true, showDescription = true } = props;
     const formFormsContext = useContext(FormFormsContext);
 
-    // Get field data
-    // console.log("pathS: ", pathS);
-    // console.log("path: ", path);
     let fieldSettings = formFormsContext.getSettings(pathS);
-    // console.log(
-    //     "fieldSettings",
-    //     fieldSettings,
-    //     "-------------------SETTINGS-------------"
-    // );
     let fieldData = formFormsContext.getValue(path);
-
-    // console.log("-------------FIELD-------------");
-    // console.log(path, "--path");
-    // console.log(fieldSettings, "--fieldSettings");
-    // console.log(fieldData, "--fieldData");
-    // console.log("-------------FIELD-------------");
 
     if (fieldSettings !== undefined) {
         let elType = fieldSettings.type ? fieldSettings.type : "input-text";
@@ -36,6 +22,7 @@ function FormsCategoryFieldNormal(props) {
                         fieldSettings={fieldSettings}
                         fieldData={fieldData}
                         path={path}
+                        key={path.join("-") + "-input"}
                     />
                 );
                 break;
@@ -46,6 +33,7 @@ function FormsCategoryFieldNormal(props) {
                         fieldSettings={fieldSettings}
                         fieldData={fieldData}
                         path={path}
+                        key={path.join("-") + "-input"}
                     />
                 );
                 break;
@@ -56,6 +44,7 @@ function FormsCategoryFieldNormal(props) {
                         fieldSettings={fieldSettings}
                         fieldData={fieldData}
                         path={path}
+                        key={path.join("-") + "-input"}
                     />
                 );
                 break;

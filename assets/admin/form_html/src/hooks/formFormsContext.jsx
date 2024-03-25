@@ -11,6 +11,11 @@ const defaultValues = {
     setValues: (val) => {},
     setValuePath: (path, value) => {},
     getValue: (path) => {},
+    getValueRepeater: (path) => {},
+    handleDragStart: (e, item) => {},
+    handleDragEnd: () => {},
+    handleDragOver: (e) => {},
+    handleDrop: (e, targetItem) => {},
 };
 
 const FormFormsContext = createContext(defaultValues);
@@ -68,10 +73,14 @@ const FormFormsContextElement = (props) => {
     };
 
     const getValue = (path) => {
+        return _.get(values, path ? path.join(".") : "");
+    };
+
+    const getValueRepeater = (path) => {
         console.log(
             values,
             path,
-            "values, path IN CONTEXT",
+            "values, path REPEATER IN CONTEXT",
             path ? path.join(".") : "",
             _.get(values, path ? path.join(".") : "")
         );
@@ -94,6 +103,34 @@ const FormFormsContextElement = (props) => {
 
     let newValue = changed.current;
 
+    // MOVE
+    let draggingItem = null;
+    const handleDragStart = (e, item) => {
+        draggingItem = item;
+        e.dataTransfer.setData("text/plain", "");
+    };
+
+    const handleDragEnd = () => {
+        draggingItem = null;
+    };
+
+    const handleDragOver = (e) => {
+        e.preventDefault();
+    };
+
+    const handleDrop = (e, targetItem) => {
+        if (!draggingItem) return;
+
+        const currentIndex = values["repeater_fields"].indexOf(draggingItem);
+        const targetIndex = values["repeater_fields"].indexOf(targetItem);
+
+        if (currentIndex !== -1 && targetIndex !== -1) {
+            values["repeater_fields"].splice(currentIndex, 1);
+            values["repeater_fields"].splice(targetIndex, 0, draggingItem);
+            this.setState({ items });
+        }
+    };
+
     // Return Data
     const data = useMemo(() => {
         return _.merge({}, defaultValues, newValue, {
@@ -105,6 +142,11 @@ const FormFormsContextElement = (props) => {
             setValues,
             setValuePath,
             getValue,
+            getValueRepeater,
+            handleDragStart,
+            handleDragEnd,
+            handleDragOver,
+            handleDrop,
         });
     }, [
         textarea,
@@ -115,6 +157,11 @@ const FormFormsContextElement = (props) => {
         setValues,
         setValuePath,
         getValue,
+        getValueRepeater,
+        handleDragStart,
+        handleDragEnd,
+        handleDragOver,
+        handleDrop,
     ]);
 
     return (

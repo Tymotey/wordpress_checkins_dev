@@ -672,7 +672,6 @@ abstract class DefaultData implements InterfaceForm
                                 'title' => 'Firstname',
                                 'width' => 'half',
                                 'notDeletable' => true,
-                                'order' => 0,
                             ),
                         'lastname' =>
                             array(
@@ -680,14 +679,12 @@ abstract class DefaultData implements InterfaceForm
                                 'title' => 'Lastname',
                                 'width' => 'half',
                                 'notDeletable' => true,
-                                'order' => 1,
                             ),
                         'lastname1' =>
                             array(
                                 'id' => 'lastname1',
                                 'title' => 'Lastname1',
                                 'width' => 'half',
-                                'order' => 1,
                             ),
                         'total_row' =>
                             array(
@@ -695,8 +692,7 @@ abstract class DefaultData implements InterfaceForm
                                 'title' => 'Row total',
                                 'type' => 'total_row',
                                 'width' => 'full',
-                                'notDeletable' => true,
-                                'order' => 1000,
+                                'notDeletable' => true
                             ),
                     ),
             ),

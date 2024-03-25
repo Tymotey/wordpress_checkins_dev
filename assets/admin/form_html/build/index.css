@@ -24,13 +24,6 @@
   width: 100%;
   display: none;
 }
-#btdev-inscriere-edit-form .category-container .category-content .repeater_control {
-  cursor: pointer;
-}
-#btdev-inscriere-edit-form .category-container .category-content .repeater_control.not_deletetable {
-  cursor: default;
-  opacity: 0.5;
-}
 #btdev-inscriere-edit-form .category-container .category-content .category-field-title-inner {
   margin: 1;
 }
@@ -46,6 +39,31 @@
 #btdev-inscriere-edit-form .category-container .category-content .category-field-container-inner .category-field-content-inner {
   padding-left: 10px;
   padding-right: 10px;
+}
+#btdev-inscriere-edit-form .category-container .category-content .category-field-container-inner .category-field-content-inner .category-field-container.repeater-field {
+  position: relative;
+  padding: 15px;
+}
+#btdev-inscriere-edit-form .category-container .category-content .category-field-container-inner .category-field-content-inner .category-field-container.repeater-field .category-field-title {
+  margin-left: 60px;
+}
+#btdev-inscriere-edit-form .category-container .category-content .category-field-container-inner .category-field-content-inner .category-field-container.repeater-field .repeater_control {
+  position: absolute;
+  cursor: pointer;
+  margin-top: -25px;
+  margin-left: 30px;
+}
+#btdev-inscriere-edit-form .category-container .category-content .category-field-container-inner .category-field-content-inner .category-field-container.repeater-field .repeater_control.not_deletetable {
+  cursor: default;
+  opacity: 0.5;
+}
+#btdev-inscriere-edit-form .category-container .category-content .category-field-container-inner .category-field-content-inner .category-field-container.repeater-field .repeater_move {
+  position: absolute;
+  cursor: n-resize;
+  margin-top: -25px;
+}
+#btdev-inscriere-edit-form .category-container .category-content .category-field-container-inner .category-field-content-inner .category-field-container:first-child {
+  padding-top: 0px;
 }
 #btdev-inscriere-edit-form .category-container .category-content .category-field-container-inner.level-1 > .category-field-content-inner {
   padding-left: 0px;

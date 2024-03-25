@@ -13,27 +13,6 @@ function FormsCategoryFieldsGroup(props) {
     let groupSettings = formFormsContext.getSettings(pathS);
     let groupData = formFormsContext.getValue(path);
 
-    // returnEl.push(
-    //     <>
-    //         ------------INFOOOOOO--------------
-    //         <br />
-    //         <b>Path: </b>
-    //         {JSON.stringify(path)}
-    //         <br />
-    //         <b>PathS: </b>
-    //         {JSON.stringify(pathS)}
-    //         <br />
-    //         <b>groupSettings: </b>
-    //         {JSON.stringify(groupSettings)}
-    //         <br />
-    //         <b>groupSettings fieldsList: </b>
-    //         {JSON.stringify(groupSettings.fieldsList)}
-    //         <br />
-    //         ------------INFOOOOOO--------------
-    //         <br />
-    //         <br />
-    //     </>
-    // );
     if (groupSettings.fieldsList === undefined) {
         if (!isRepeater) {
             return (
@@ -46,7 +25,7 @@ function FormsCategoryFieldsGroup(props) {
         } else {
             return (
                 <FormsCategoryFieldRepeater
-                    key={path.join("-") + "-field"}
+                    key={path.join("-") + "-fieldRepeater"}
                     path={[...path]}
                     pathS={[...pathS]}
                 />
